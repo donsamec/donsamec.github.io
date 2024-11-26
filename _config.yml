@@ -1,4 +1,5 @@
 title: "Don Samec"
 description: "Under Construction"
-theme: "minimal"
+theme: "jekyll-theme-minimal"
 url: "https://donsamec.github.io"
+baseurl: "" # Leave empty unless hosting under a subpath
