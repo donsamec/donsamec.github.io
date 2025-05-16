@@ -3617,7 +3617,7 @@ input, select, textarea {
 
 .video-buttons a img {
   width: 100%;
-  max-width: 400px;     /* Optional: limit max width per image */
+       /* Optional: limit max width per image */
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.08);
   transition: transform 0.2s;
