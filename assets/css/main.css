@@ -3581,16 +3581,20 @@ input, select, textarea {
   margin: 3em auto 2em auto;
 }
 
-.masonry-grid-js img {
+.masonry-grid-js {
+  column-count: 4;
+  column-gap: 1.5em;
   width: 100%;
-  margin-bottom: 1.5em;
-  border-radius: 8px;
-  display: block;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-  background: #fff;
-  break-inside: avoid;
-  transition: transform 0.2s;
-  cursor: pointer;
+  max-width: 68em;      /* Match .inner's max-width if that's what your text uses */
+  margin: 2em auto;     /* Center the grid */
+  padding: 0;           /* Remove extra padding if present */
+  box-sizing: border-box;
+}
+
+@media (max-width: 1200px) {
+  .masonry-grid-js {
+    column-count: 3;
+  }
 }
 
 @media (max-width: 900px) {
