@@ -1,5 +1,5 @@
 @import url(fontawesome-all.min.css);
-@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,700,900");
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,700");
 
 /*
 	Phantom by HTML5 UP
@@ -2843,7 +2843,7 @@ input, select, textarea {
 			}
 
 		.image.main {
-			display: block;
+					display: block;
 			margin: 0 0 3em 0;
 			width: 100%;
 		}
@@ -3829,12 +3829,13 @@ input, select, textarea {
   align-items: center;      /* Vertically center arrows and carousel */
   justify-content: center;
   gap: 1em;                 /* Space between arrows and carousel */
-  max-width: 900px;   /* Match your .glider max-width */
+  max-width: 900px;   /* Set this to match your .inner content width */
   margin: 0 auto;     /* Center the carousel and arrows */
 }
 
 .glider {
-  max-width: 900px;
+  width: 100%;
+  max-width: 700px;   /* Adjust as needed for your design */
 }
 
 .glider img {
@@ -3861,7 +3862,6 @@ input, select, textarea {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 1em;
 }
 
 .glider-prev:hover,
