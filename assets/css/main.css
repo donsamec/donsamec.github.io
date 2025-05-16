@@ -2572,7 +2572,7 @@ input, select, textarea {
 		-webkit-flex-wrap: wrap;
 		-ms-flex-wrap: wrap;
 		flex-wrap: wrap;
-		postiion: relative;
+		position: relative;
 		margin: -2.5em 0 0 -2.5em;
 	}
 
@@ -3344,11 +3344,11 @@ input, select, textarea {
 }
 .glider img {
   width: 100%;
-  aspect-ratio: 2/3;
+  aspect-ratio: 3/2;
   object-fit: contain; /* Show full image, no cropping */
   border-radius: 8px;
   display: block;
-  background: #f6f6f6; /* Optional: background for letterboxing */
+  background: #fff; /* Optional: background for letterboxing */
 }
 .glider-prev,
 .glider-next {
