@@ -1,0 +1,51 @@
+body {
+    margin: 0;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background-color: #fff;
+    color: #222;
+    display: flex;
+    justify-content: center;
+    padding: 2rem;
+  }
+  
+  .container {
+    max-width: 800px;
+    width: 100%;
+    text-align: center;
+  }
+  
+  .intro p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+  }
+  
+  .separator {
+    border: none;
+    height: 1px;
+    background-color: #ccc;
+    margin: 2rem 0;
+  }
+  
+  .carousel-container {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 1rem;
+    padding-bottom: 1rem;
+  }
+  
+  .carousel-container img {
+    height: 200px;
+    flex-shrink: 0;
+    scroll-snap-align: center;
+    border-radius: 8px;
+    object-fit: cover;
+  }
+  
+  .video video {
+    width: 100%;
+    max-width: 100%;
+    border-radius: 8px;
+  }
+  
