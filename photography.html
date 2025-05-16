@@ -114,6 +114,20 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+			<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    new Glider(document.querySelector('.glider'), {
+      slidesToShow: 1,
+      dots: '.dots',
+      arrows: {
+        prev: '.glider-prev',
+        next: '.glider-next'
+      },
+      draggable: true,
+      scrollLock: true
+    });
+  });
+</script>
 
 	</body>
 </html>
