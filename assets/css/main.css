@@ -5288,12 +5288,7 @@ input, select, textarea {
 
 		}
 
-.masonry-grid-js {
-  column-count: 3;
-  column-gap: 1.5em;
-  max-width: 900px;
-  margin: 3em auto 2em auto;
-}
+
 
 /* Masonry Grid - 4 columns, responsive, aligned with .inner */
 .masonry-grid-js {
