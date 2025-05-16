@@ -2695,7 +2695,7 @@ input, select, textarea {
 					-ms-transition: max-height 0.5s ease, opacity 0.5s ease;
 					transition: max-height 0.5s ease, opacity 0.5s ease;
 					width: 100%;
-					max-height:  0;
+					max-height:   0;
 					line-height: 1.5;
 					margin-top: 0.35em;
 					opacity: 0;
@@ -3336,18 +3336,19 @@ input, select, textarea {
 
 .carousel-flex {
   display: flex;
-  align-items: center;
+  align-items: center;      /* Vertically center arrows and carousel */
   justify-content: center;
-  margin-top: 0; /* Remove any extra margin */
+  gap: 1em;                 /* Space between arrows and carousel */
 }
 
 .glider {
   width: 100%;
+  max-width: 900px;         /* Optional: adjust to match your content width */
 }
 
 .glider img {
   width: 100%;
-  aspect-ratio: 3/2; /* Portrait ratio */
+  aspect-ratio: 3/2;        /* Horizontal aspect ratio */
   object-fit: contain;
   border-radius: 8px;
   display: block;
@@ -3360,7 +3361,6 @@ input, select, textarea {
   border: none;
   font-size: 2em;
   cursor: pointer;
-  padding: 0 0.5em;
   color: #222;
   border-radius: 50%;
   box-shadow: 0 2px 8px rgba(0,0,0,0.08);
@@ -3370,7 +3370,7 @@ input, select, textarea {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 1em; /* Space between arrows and carousel */
+  margin: 0 1em;
 }
 
 .glider-prev:hover,
