@@ -3608,16 +3608,19 @@ input, select, textarea {
   gap: 2em;
   justify-content: center;
   margin: 2em 0;
-  max-width: 68em;      /* Match .inner max-width */
   width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 0 2.5em;     /* Match .inner horizontal padding */
+  /* Remove max-width and padding if present */
+}
+
+.video-buttons a {
+  flex: 1 1 0;
+  display: flex;
+  justify-content: center;
 }
 
 .video-buttons a img {
   width: 100%;
-       /* Optional: limit max width per image */
+  max-width: 100%;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.08);
   transition: transform 0.2s;
