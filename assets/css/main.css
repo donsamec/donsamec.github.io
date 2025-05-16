@@ -3331,6 +3331,7 @@ input, select, textarea {
 /* Carousel layout fix */
 .carousel-container {
   margin: 2em 0;
+  width: 100%;
 }
 .carousel-flex {
   display: flex;
@@ -3338,15 +3339,16 @@ input, select, textarea {
   justify-content: center;
 }
 .glider {
-  max-width: 600px;
   width: 100%;
+  /* Remove max-width to allow full stretch */
 }
 .glider img {
   width: 100%;
-  aspect-ratio: 4/3;
-  object-fit: cover;
+  aspect-ratio: 2/3;
+  object-fit: contain; /* Show full image, no cropping */
   border-radius: 8px;
   display: block;
+  background: #f6f6f6; /* Optional: background for letterboxing */
 }
 .glider-prev,
 .glider-next {
