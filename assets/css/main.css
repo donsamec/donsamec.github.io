@@ -1,3 +1,4 @@
+
 @import url(fontawesome-all.min.css);
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,700,900");
 
@@ -3601,4 +3602,21 @@ input, select, textarea {
   .masonry-grid-js {
     column-count: 1;
   }
+}
+.video-buttons {
+  display: flex;
+  gap: 2em;
+  justify-content: center;
+  margin: 2em 0;
+}
+.video-buttons a img {
+  width: 220px;
+  max-width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  transition: transform 0.2s;
+  cursor: pointer;
+}
+.video-buttons a img:hover {
+  transform: scale(1.05);
 }
