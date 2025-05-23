@@ -5400,3 +5400,23 @@ input, select, textarea {
   clip: rect(0, 0, 0, 0);
   border: 0;
 }
+
+.masonry-grid-collage {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.5em;
+  width: 100%;
+  max-width: 68em; /* Match your .inner if you want alignment */
+  margin: 0 auto 2em auto;
+  box-sizing: border-box;
+}
+
+.masonry-grid-collage img {
+  width: 100%;
+  display: block;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  background: #fff;
+  object-fit: cover;
+  aspect-ratio: 1 / 1; /* Ensures square images, remove if you want natural aspect */
+}
