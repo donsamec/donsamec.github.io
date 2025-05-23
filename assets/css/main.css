@@ -5438,22 +5438,3 @@ input, select, textarea {
     padding: 0 0.5em;
   }
 }
-
-@media screen and (max-width: 736px) {
-  #wrapper > * > .inner,
-  .inner {
-    padding-left: 0.5em;
-    padding-right: 0.5em;
-  }
-  #header .logo {
-    margin-left: 0;
-  }
-  #main {
-    padding-left: 0;
-    padding-right: 0;
-  }
-  .image.main {
-    margin-left: 0;
-    margin-right: 0;
-  }
-}
