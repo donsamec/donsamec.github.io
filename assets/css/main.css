@@ -4789,7 +4789,7 @@ input, select, textarea {
 /* Header */
 
 	#header {
-		padding: 8em 0 0.1em 0 ;
+		padding: 2em 0 0.1em 0 ;
 	}
 		#header .inner {
   			display: flex;
@@ -4804,7 +4804,7 @@ input, select, textarea {
 			color: inherit;
 			font-weight: 900;
 			letter-spacing: 0.35em;
-			margin: 0 0 2.5em 0;
+			margin: 0 ;
 			text-decoration: none;
 			text-transform: uppercase;
 			display: inline-block;
