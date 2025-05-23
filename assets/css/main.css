@@ -4791,6 +4791,12 @@ input, select, textarea {
 	#header {
 		padding: 8em 0 0.1em 0 ;
 	}
+		#header .inner {
+  			display: flex;
+  			align-items: flex-start;   /* Align logo and nav to the top */
+  			justify-content: space-between;
+  			padding-top: 0;            /* Remove any extra top padding */
+}
 
 		#header .logo {
 			display: block;
