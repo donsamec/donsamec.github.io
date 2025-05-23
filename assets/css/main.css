@@ -5374,3 +5374,7 @@ input, select, textarea {
 .video-buttons a img:hover {
   transform: scale(1.05);
 }
+
+.section-spacer {
+  height: 2.5em; /* Adjust as needed for your design */
+}
