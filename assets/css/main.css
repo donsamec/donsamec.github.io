@@ -5311,6 +5311,26 @@ input, select, textarea {
   object-fit: cover;
 }
 
+.masonry-grid-home {
+  column-count: 2;
+  column-gap: 1.5em;
+  width: 100%;
+  margin: 2em 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.masonry-grid-home img {
+  width: 100%;
+  display: block;
+  margin-bottom: 1.5em;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  background: #fff;
+  break-inside: avoid;
+  object-fit: cover;
+}
+
 /* Responsive breakpoints */
 @media (max-width: 1200px) {
   .masonry-grid-js {
