@@ -5338,6 +5338,11 @@ input, select, textarea {
   object-fit: cover;
 }
 
+@media (max-width: 600px) {
+  .masonry-grid-home {
+    column-count: 1;
+  }
+}
 /* Responsive breakpoints */
 @media (max-width: 1200px) {
   .masonry-grid-js {
