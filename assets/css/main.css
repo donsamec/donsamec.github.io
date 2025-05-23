@@ -5420,3 +5420,15 @@ input, select, textarea {
   object-fit: cover;
   aspect-ratio: 1 / 1; /* Ensures square images, remove if you want natural aspect */
 }
+
+@media screen and (max-width: 736px) {
+  #header .inner {
+    display: flex;
+    align-items: flex-start;    /* Align logo and nav to the top */
+    justify-content: space-between;
+    padding-top: 0;
+  }
+  #header .logo {
+    margin-bottom: 1.5em;      /* Adjust as needed for spacing below logo */
+  }
+}
