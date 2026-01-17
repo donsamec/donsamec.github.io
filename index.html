@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Don Samec | Transforming Spaces into Places of Belonging</title>
+    <title>Don Samec | Transforming Sterile Spaces into Places of Belonging</title>
     <style>
         * {
             margin: 0;
@@ -12,51 +12,53 @@
         }
         
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
-            line-height: 1.6;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.7;
             color: #2c2c2c;
+            overflow-x: hidden;
         }
         
+        /* Hero Section */
         .hero {
-            min-height: 100vh;
-            background: linear-gradient(135deg, #1a1a1a 0%, #3d3d3d 100%);
-            color: white;
+            position: relative;
+            height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 2rem;
-        }
-        
-        .hero-content {
-            max-width: 1000px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-        
-        .hero-text {
-            text-align: left;
+            overflow: hidden;
         }
         
         .hero-image {
-            width: 100%;
-            max-width: 400px;
-            aspect-ratio: 3/4;
-            border-radius: 8px;
-            overflow: hidden;
-            margin: 0 auto;
-        }
-        
-        .hero-image img {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
             object-fit: cover;
-            display: block;
+            z-index: 1;
+        }
+        
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 2;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            text-align: center;
+            color: white;
+            max-width: 900px;
+            padding: 2rem;
         }
         
         .hero h1 {
-            font-size: 3rem;
+            font-size: 3.5rem;
             font-weight: 700;
             margin-bottom: 1.5rem;
             line-height: 1.2;
@@ -65,97 +67,128 @@
         .hero .subtitle {
             font-size: 1.5rem;
             font-weight: 300;
-            margin-bottom: 1rem;
-            opacity: 0.9;
+            opacity: 0.95;
         }
         
-        .hero .tagline {
-            font-size: 1rem;
-            opacity: 0.8;
-            margin-bottom: 2.5rem;
+        /* Fade-in animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
         }
         
-        .cta-button {
-            display: inline-block;
-            padding: 1rem 2.5rem;
-            background: white;
-            color: #1a1a1a;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            border-radius: 4px;
-            transition: transform 0.2s, box-shadow 0.2s;
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
         
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(255,255,255,0.3);
-        }
-        
-        section {
-            padding: 5rem 2rem;
+        /* Chapters */
+        .chapter {
+            padding: 6rem 2rem;
             max-width: 1200px;
             margin: 0 auto;
         }
         
-        h2 {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            text-align: center;
+        .chapter h2 {
+            font-size: 2.8rem;
+            margin-bottom: 3rem;
+            font-weight: 700;
         }
         
-        .problem-section {
-            background: #f8f8f8;
-        }
-        
-        .problem-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-        
-        .problem-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        
-        .problem-card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-            color: #c44536;
-        }
-        
-        .solution-section {
-            background: white;
-        }
-        
-        .solution-content {
-            max-width: 800px;
-            margin: 0 auto;
+        .chapter-text {
             font-size: 1.2rem;
-            line-height: 1.8;
+            line-height: 1.9;
+            max-width: 900px;
+            margin: 0 auto;
         }
         
-        .highlight {
-            background: #fff9e6;
-            padding: 0.2rem 0.5rem;
-            border-radius: 3px;
+        .chapter-text p {
+            margin-bottom: 1.5rem;
+        }
+        
+        .chapter-text strong {
             font-weight: 600;
         }
         
+        /* Chapter 1 - Masonry Grid */
+        .masonry-grid {
+            margin-top: 4rem;
+            column-count: 3;
+            column-gap: 1.5rem;
+        }
+        
+        .masonry-item {
+            break-inside: avoid;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .masonry-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .masonry-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 4px;
+        }
+        
+        /* Chapter 2 - Image and Video */
+        .chapter2-image {
+            margin: 4rem auto;
+            max-width: 1000px;
+        }
+        
+        .chapter2-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 4px;
+        }
+        
+        .chapter2-video {
+            margin: 4rem auto;
+            max-width: 1000px;
+        }
+        
+        .chapter2-video video {
+            width: 100%;
+            height: auto;
+            border-radius: 4px;
+        }
+        
+        /* Chapter 3 - Case Study */
         .case-study {
-            background: #1a1a1a;
-            color: white;
+            background: #f8f8f8;
+            padding: 6rem 2rem;
+            margin-top: 4rem;
+        }
+        
+        .case-study-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .case-study h3 {
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
         }
         
         .case-study-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 3rem;
-            align-items: center;
+            align-items: start;
+            margin-bottom: 4rem;
+        }
+        
+        .case-study-text p {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
         }
         
         .case-study-image {
@@ -171,16 +204,6 @@
             display: block;
         }
         
-        .case-study-text h3 {
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-        }
-        
-        .case-study-text p {
-            margin-bottom: 1rem;
-            line-height: 1.8;
-        }
-        
         .quote {
             border-left: 4px solid #c44536;
             padding-left: 1.5rem;
@@ -189,49 +212,62 @@
             opacity: 0.9;
         }
         
-        .process-section {
-            background: #f8f8f8;
+        /* Process Gallery */
+        .process-gallery {
+            margin-top: 4rem;
         }
         
-        .process-steps {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-        
-        .step {
+        .process-gallery h4 {
             text-align: center;
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
         }
         
-        .step-number {
-            width: 60px;
-            height: 60px;
-            background: #1a1a1a;
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin: 0 auto 1rem;
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
         }
         
-        .step h3 {
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
+        .process-item {
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s;
         }
         
+        .process-item:hover {
+            transform: scale(1.02);
+        }
+        
+        .process-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* Who This Is For */
         .who-section {
             background: white;
+            padding: 5rem 2rem;
+        }
+        
+        .who-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .who-section h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
         }
         
         .clients-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 1.5rem;
-            margin-top: 3rem;
         }
         
         .client-type {
@@ -240,66 +276,42 @@
             border-radius: 8px;
             text-align: center;
             font-weight: 600;
+            font-size: 1.1rem;
         }
         
+        /* Contact */
         .contact-section {
             background: #1a1a1a;
             color: white;
             text-align: center;
+            padding: 5rem 2rem;
         }
         
-        .contact-info {
-            margin-top: 2rem;
-            font-size: 1.2rem;
-        }
-        
-        .contact-info a {
-            color: white;
-            text-decoration: none;
-            border-bottom: 2px solid #c44536;
-            padding-bottom: 2px;
-        }
-        
-        .contact-info a:hover {
-            border-bottom-color: white;
+        .contact-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
         }
         
         .contact-methods {
             display: flex;
             justify-content: center;
             gap: 3rem;
-            margin-top: 2rem;
+            margin: 2rem 0;
             flex-wrap: wrap;
         }
         
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero .subtitle {
-                font-size: 1.2rem;
-            }
-            
-            .hero-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-            
-            .hero-text {
-                text-align: center;
-            }
-            
-            .case-study-content {
-                grid-template-columns: 1fr;
-            }
-            
-            section {
-                padding: 3rem 1.5rem;
-            }
+        .contact-methods a {
+            color: white;
+            text-decoration: none;
+            border-bottom: 2px solid #c44536;
+            padding-bottom: 2px;
         }
         
-        /* Lightbox Styles */
+        .contact-methods a:hover {
+            border-bottom-color: white;
+        }
+        
+        /* Lightbox */
         .lightbox {
             display: none;
             position: fixed;
@@ -398,7 +410,36 @@
             font-size: 0.9rem;
         }
         
+        /* Responsive */
         @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .chapter {
+                padding: 4rem 1.5rem;
+            }
+            
+            .chapter h2 {
+                font-size: 2rem;
+            }
+            
+            .chapter-text {
+                font-size: 1.1rem;
+            }
+            
+            .masonry-grid {
+                column-count: 2;
+            }
+            
+            .case-study-content {
+                grid-template-columns: 1fr;
+            }
+            
             .lightbox-nav {
                 width: 40px;
                 height: 40px;
@@ -421,146 +462,178 @@
                 right: 10px;
             }
         }
+        
+        @media (max-width: 480px) {
+            .masonry-grid {
+                column-count: 1;
+            }
+        }
     </style>
 </head>
 <body>
     <!-- Hero Section -->
-    <div class="hero">
+    <section class="hero">
+        <img src="images/hero-photo-2.jpg" alt="Don Samec artwork" class="hero-image">
+        <div class="hero-overlay"></div>
         <div class="hero-content">
-            <div class="hero-text">
-                <h1>Transforming Sterile Spaces into Places of Belonging</h1>
-                <p class="subtitle">Strategic placemaking for commercial and residential environments</p>
-                <p class="tagline">Because architecture creates buildings. Art creates homes. And Cork deserves both.</p>
-                <a href="#contact" class="cta-button">Start a Conversation</a>
+            <h1>Transforming Sterile Spaces into Places of Belonging</h1>
+            <p class="subtitle">Anywhere in the world</p>
+        </div>
+    </section>
+
+    <!-- Chapter 1: What's the Story? -->
+    <section class="chapter chapter-1">
+        <h2 class="fade-in">What's the Story?</h2>
+        <div class="chapter-text fade-in">
+            <p>When I moved to Cork five years ago, I felt invisible. Not unwelcome—just <em>placeless</em>. I'd walk streets I couldn't name, past buildings whose stories I didn't know, surrounded by a language I spoke but didn't <em>speak</em>.</p>
+            
+            <p>So I started photographing. Not landmarks—fragments. Textures on walls. Light through windows. The details that make a place <em>specific</em>. I collected archival imagery, old maps, newspaper clippings. I was trying to understand: <strong>What makes somewhere feel like home when you're a stranger?</strong></p>
+            
+            <p>People would greet me: "Hey Don, what's the story?" And I'd always ask myself—well, <strong>what <em>is</em> Cork's story?</strong></p>
+            
+            <p>The answer wasn't in knowing Cork's history perfectly. It was in <strong>actively engaging with it</strong>. The act of collecting, arranging, and recontextualizing these fragments created a bridge. Not between me and Cork's past—between me and Cork's <em>present</em>.</p>
+            
+            <p>I realized: <strong>belonging isn't automatic. It's built. Through attention, through curiosity, through making meaning from what's around you.</strong></p>
+            
+            <p>Your tenants, your employees, your family—they're all immigrants to your space. They arrive as strangers. The question is: does your space help them build that bridge to belonging? Or does it stay anonymous?</p>
+        </div>
+        
+        <div class="masonry-grid">
+            <div class="masonry-item"><img src="images/chapter1-image1.jpg" alt="Cork street photography"></div>
+            <div class="masonry-item"><img src="images/chapter1-image2.jpg" alt="Cork street photography"></div>
+            <div class="masonry-item"><img src="images/chapter1-image3.jpg" alt="Cork street photography"></div>
+            <div class="masonry-item"><img src="images/chapter1-image4.jpg" alt="Cork street photography"></div>
+            <div class="masonry-item"><img src="images/chapter1-image5.jpg" alt="Cork street photography"></div>
+            <div class="masonry-item"><img src="images/chapter1-image6.jpg" alt="Cork street photography"></div>
+        </div>
+    </section>
+
+    <!-- Chapter 2: Material Memory as Method -->
+    <section class="chapter chapter-2">
+        <h2 class="fade-in">Material Memory as Method</h2>
+        <div class="chapter-text fade-in">
+            <p>Here's what five years of experiments taught me: <strong>you can't manufacture belonging, but you can architect the conditions for it.</strong></p>
+            
+            <p>When I tear a photograph of Cork from its original context—a street, a building, an archive—and reposition it on canvas, layered with paint, with other images, with text, something happens. It stops being <em>documentation</em> and becomes <em>conversation</em>.</p>
+            
+            <p>The viewer's eye doesn't glide past it. It stops. It asks: <em>What am I looking at? Where does this connect? What does this mean?</em></p>
+        </div>
+        
+        <div class="chapter2-image fade-in">
+            <img src="images/chapter2-comparison.jpg" alt="Materials to finished work comparison">
+        </div>
+        
+        <div class="chapter-text fade-in">
+            <p>That moment of questioning—that's the moment of engagement. And engagement is the first step to belonging.</p>
+            
+            <p>I'm not decorating walls. I'm creating <strong>cognitive friction</strong> in smooth, sterile spaces. I'm embedding fragments of place-memory that reward attention, that reveal more on second and third viewings, that signal: <em>this space has depth, has story, has soul</em>.</p>
+            
+            <p>The methodology works in Cork. It works in DC. It would work in Tokyo. Because the human need for <strong>textured, storied environments</strong> is universal.</p>
+            
+            <p>Modern architecture is beautiful but often <em>flat</em>—emotionally, cognitively, narratively. These installations add the dimension that makes people slow down, look closer, return. That's not aesthetic preference. That's material psychology.</p>
+        </div>
+        
+        <div class="chapter2-video fade-in">
+            <video autoplay loop muted playsinline>
+                <source src="images/chapter2-process.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <p style="text-align: center; margin-top: 1.5rem; font-style: italic; opacity: 0.8; font-size: 1.1rem;">The methodology transcends borders—Corsican fragments layered with Marseille memories prove belonging can be built anywhere, from any place.</p>
+        </div>
+    </section>
+
+    <!-- Chapter 3: Proven Model, Infinite Application -->
+    <section class="chapter chapter-3">
+        <h2 class="fade-in">Proven Model, Infinite Application</h2>
+        <div class="chapter-text fade-in">
+            <p>The 450k project was the test: could this methodology solve a real business problem?</p>
+            
+            <p>A residential building. Beautiful architecture. Cold communal spaces. Residents passing through without connecting.</p>
+            
+            <p>Using archival maps, local imagery, and layered abstraction, I created three large-scale installations designed specifically to transform sterile pass-through zones into destinations of belonging.</p>
+        </div>
+    </section>
+
+    <!-- Case Study -->
+    <div class="case-study fade-in">
+        <div class="case-study-container">
+            <h3>The 450k Installation</h3>
+            
+            <div class="case-study-content">
+                <div class="case-study-text">
+                    <p><strong>The Challenge:</strong> A modern residential development with beautiful architecture but cold communal spaces. Residents weren't connecting with the building or each other.</p>
+                    
+                    <p><strong>The Approach:</strong> Three large-scale panels using reclaimed materials, archival imagery, and layered textures. Each piece designed to invite closer inspection and spark conversation.</p>
+                    
+                    <div class="quote">
+                        "The building managers are greatly satisfied with the result"
+                    </div>
+                    
+                    <p><strong>The space changed.</strong> People slowed down. They looked. They talked about it.</p>
+                    
+                    <p><strong>That's the model:</strong> I come to your city, your space. I research your archival material, your visual identity. I source, curate, and create site-specific work that embeds <em>your place</em> into <em>your space</em>. The methodology is mine. The story is yours.</p>
+                </div>
+                
+                <div class="case-study-image">
+                    <img src="images/450k-final.jpg" alt="450k final installation">
+                </div>
             </div>
-            <div class="hero-image">
-                <img src="hero-photo.jpg" alt="Don Samec in studio with mixed media artwork" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+            
+            <!-- Process Gallery -->
+            <div class="process-gallery">
+                <h4>From Concept to Installation</h4>
+                <div class="process-grid">
+                    <div class="process-item" onclick="openLightbox(0)">
+                        <img src="images/450k-process-1.jpg" alt="Concept and materials">
+                    </div>
+                    <div class="process-item" onclick="openLightbox(1)">
+                        <img src="images/450k-process-2.jpg" alt="Construction process">
+                    </div>
+                    <div class="process-item" onclick="openLightbox(2)">
+                        <img src="images/450k-process-3.jpg" alt="Detail work">
+                    </div>
+                    <div class="process-item" onclick="openLightbox(3)">
+                        <img src="images/450k-process-4.jpg" alt="Finished panels">
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- Problem Section -->
-    <section class="problem-section">
-        <h2>The Problem You're Facing</h2>
-        <p style="text-align: center; font-size: 1.2rem; max-width: 700px; margin: 0 auto 2rem;">Modern developments are beautiful. But they often feel cold, unwelcoming, and forgettable.</p>
-        
-        <div class="problem-grid">
-            <div class="problem-card">
-                <h3>Residential Properties</h3>
-                <p>Tenants pass through lobbies without engaging. Your space doesn't feel like home—it feels like a hotel.</p>
-            </div>
-            
-            <div class="problem-card">
-                <h3>Corporate Offices</h3>
-                <p>Employees spend 8 hours in sterile environments. Retention suffers. Culture feels forced.</p>
-            </div>
-            
-            <div class="problem-card">
-                <h3>Hotels & Hospitality</h3>
-                <p>Guests crave authentic, local experiences. Generic decor doesn't drive bookings or social shares.</p>
-            </div>
-            
-            <div class="problem-card">
-                <h3>Healthcare Spaces</h3>
-                <p>Waiting rooms amplify anxiety. Clinical environments add stress when people need calm.</p>
+    <!-- Who This Is For -->
+    <section class="who-section">
+        <div class="who-container">
+            <h2>Who This Is For</h2>
+            <div class="clients-grid">
+                <div class="client-type">Property Developers</div>
+                <div class="client-type">Property Managers</div>
+                <div class="client-type">Hotel Groups</div>
+                <div class="client-type">Corporate Offices</div>
+                <div class="client-type">Architecture Firms</div>
+                <div class="client-type">Healthcare Facilities</div>
+                <div class="client-type">Educational Institutions</div>
+                <div class="client-type">Homeowners</div>
             </div>
         </div>
     </section>
 
-    <!-- Solution Section -->
-    <section class="solution-section">
-        <h2>The Solution: Material Memory</h2>
-        <div class="solution-content">
-            <p>I create <span class="highlight">site-specific installations</span> using layered, reclaimed materials that give spaces a "human heartbeat."</p>
-            
-            <p>This isn't decoration. It's <span class="highlight">placemaking as infrastructure</span>—strategically designed to solve psychological problems:</p>
-            
-            <ul style="margin: 2rem 0 2rem 2rem; font-size: 1.1rem;">
-                <li style="margin-bottom: 1rem;">Mitigate architectural sterility in modern developments</li>
-                <li style="margin-bottom: 1rem;">Create natural gathering points that encourage interaction</li>
-                <li style="margin-bottom: 1rem;">Signal belonging and authenticity over exclusivity</li>
-                <li style="margin-bottom: 1rem;">Transform pass-through zones into destinations</li>
-            </ul>
-            
-            <p>The result? Spaces where people slow down, engage, and feel at home.</p>
-        </div>
-    </section>
-
-    <!-- Rooted in Cork Section -->
-    <section style="background: white; padding: 5rem 2rem;">
-        <div style="max-width: 900px; margin: 0 auto;">
-            <h2>Rooted in Cork</h2>
-            
-            <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 3rem; align-items: start; margin-top: 2rem;">
-                <div style="font-size: 1.15rem; line-height: 1.8;">
-                    <p style="margin-bottom: 1.5rem;">For the past five years, Cork has been my home, my studio, and my endless source of inspiration. I walk this city constantly—camera in hand, eyes scanning textures, fragments, moments of beauty hiding in plain sight.</p>
-                    
-                    <p style="margin-bottom: 1.5rem;">Every photograph I capture on these walks, every urban abstract, every street scene becomes raw material for the work I create. Cork's energy, its vibrancy, its flux—all of it gets woven into the installations I make.</p>
-                    
-                    <p style="margin-bottom: 1.5rem;"><strong>When you commission work from me, you're not just getting art. You're getting a piece of Cork itself</strong>—its character, its memory, its spirit embedded into your space.</p>
-                    
-                    <p style="margin-bottom: 1.5rem;">Residents don't just want beautiful spaces. They want to feel connected to where they live. Employees don't just want offices. They want to work somewhere that feels like <em>somewhere</em>.</p>
-                    
-                    <p style="margin-bottom: 0;">That's what Cork gives us. And that's what I give back through every piece I create.</p>
-                </div>
-                
-                <div style="background: #f0f0f0; aspect-ratio: 3/4; border-radius: 8px; overflow: hidden;">
-                    <img src="images/cork-photo.jpg" alt="Don photographing Cork" style="width: 100%; height: 100%; object-fit: cover;">
-                </div>
+    <!-- Contact -->
+    <section class="contact-section">
+        <h2>Let's Create Something Meaningful</h2>
+        <p style="font-size: 1.2rem; max-width: 600px; margin: 1rem auto 2rem;">Based in Cork, working internationally</p>
+        
+        <div class="contact-methods">
+            <div>
+                <strong>Email</strong><br>
+                <span style="color: white;">don.samec@gmail.com</span>
+            </div>
+            <div>
+                <strong>Phone</strong><br>
+                <span style="color: white;">083 097 1140</span>
             </div>
         </div>
         
-        <style>
-            @media (max-width: 768px) {
-                section > div > div {
-                    grid-template-columns: 1fr !important;
-                }
-            }
-        </style>
-    </section>
-
-    <!-- Case Study Section -->
-    <section class="case-study">
-        <h2 style="color: white;">Recent Project: 450k Residential Installation</h2>
-        <div class="case-study-content">
-            <div class="case-study-text">
-                <h3>The Challenge</h3>
-                <p>A modern residential development with beautiful architecture but cold communal spaces. Residents weren't connecting with the building or each other.</p>
-                
-                <h3 style="margin-top: 2rem;">The Approach</h3>
-                <p>Three large-scale panels using reclaimed materials, archival imagery, and layered textures. Each piece designed to invite closer inspection and spark conversation.</p>
-                
-                <div class="quote">
-                    "The building managers are greatly satisfied with the result"
-                </div>
-                
-                <p><strong>Delivered:</strong> Site-specific artwork, professional installation coordination, documentation for marketing use</p>
-            </div>
-            
-            <div class="case-study-image">
-                <img src="images/450k-final.jpg" alt="450k final installation" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
-            </div>
-        </div>
-        
-        <!-- Process Gallery -->
-        <div style="margin-top: 4rem;">
-            <h3 style="text-align: center; font-size: 1.8rem; margin-bottom: 2rem; color: white;">From Studio to Site</h3>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; align-items: start;">
-                <div style="background: #3d3d3d; border-radius: 8px; overflow: hidden; cursor: pointer;" onclick="openLightbox(0)">
-                    <img src="images/450k-process-1.jpg" alt="Materials and concept development" style="width: 100%; height: auto; display: block; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
-                </div>
-                <div style="background: #3d3d3d; border-radius: 8px; overflow: hidden; cursor: pointer;" onclick="openLightbox(1)">
-                    <img src="images/450k-process-2.jpg" alt="Work in progress" style="width: 100%; height: auto; display: block; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
-                </div>
-                <div style="background: #3d3d3d; border-radius: 8px; overflow: hidden; cursor: pointer;" onclick="openLightbox(2)">
-                    <img src="images/450k-process-3.jpg" alt="Detail of layering and texture" style="width: 100%; height: auto; display: block; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
-                </div>
-                <div style="background: #3d3d3d; border-radius: 8px; overflow: hidden; cursor: pointer;" onclick="openLightbox(3)">
-                    <img src="images/450k-process-4.jpg" alt="Finished panels ready for installation" style="width: 100%; height: auto; display: block; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
-                </div>
-            </div>
-            <p style="text-align: center; margin-top: 2rem; font-size: 1.1rem; opacity: 0.8;">Every piece is handcrafted with meticulous attention to material quality and archival standards</p>
-        </div>
+        <p style="margin-top: 3rem; opacity: 0.7; text-align: center;"><a href="https://www.poetonic.com" target="_blank" style="color: white; text-decoration: none; border-bottom: 2px solid #c44536; padding-bottom: 2px;">Artistic practice</a></p>
     </section>
 
     <!-- Lightbox -->
@@ -575,6 +648,26 @@
     </div>
 
     <script>
+        // Scroll animations for all fade-in elements
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+        
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in, .masonry-item').forEach(item => {
+            observer.observe(item);
+        });
+        
+        // Lightbox functionality
         const lightboxImages = [
             'images/450k-process-1-full.jpg',
             'images/450k-process-2-full.jpg',
@@ -632,7 +725,7 @@
             }
         });
         
-        // Touch swipe support for mobile
+        // Touch swipe support
         let touchStartX = 0;
         let touchEndX = 0;
         
@@ -654,79 +747,5 @@
             }
         }
     </script>
-
-    <!-- Process Section -->
-    <section class="process-section">
-        <h2>How We Work Together</h2>
-        <div class="process-steps">
-            <div class="step">
-                <div class="step-number">1</div>
-                <h3>Discovery</h3>
-                <p>Site visit and consultation to understand your space and objectives</p>
-            </div>
-            
-            <div class="step">
-                <div class="step-number">2</div>
-                <h3>Concept</h3>
-                <p>Custom design developed specifically for your environment and brand</p>
-            </div>
-            
-            <div class="step">
-                <div class="step-number">3</div>
-                <h3>Creation</h3>
-                <p>Handcrafted mixed-media artwork built to archival standards</p>
-            </div>
-            
-            <div class="step">
-                <div class="step-number">4</div>
-                <h3>Installation</h3>
-                <p>Professional team coordinated to meet all technical requirements</p>
-            </div>
-            
-            <div class="step">
-                <div class="step-number">5</div>
-                <h3>Documentation</h3>
-                <p>Photography and video content for your marketing</p>
-            </div>
-        </div>
-        
-        <p style="text-align: center; margin-top: 3rem; font-size: 1.1rem; font-style: italic;">One creative partner. Complete solution. No vendor coordination headaches.</p>
-    </section>
-
-    <!-- Who Section -->
-    <section class="who-section">
-        <h2>Who This Is For</h2>
-        <div class="clients-grid">
-            <div class="client-type">Property Developers</div>
-            <div class="client-type">Property Management Companies</div>
-            <div class="client-type">Hotel Groups</div>
-            <div class="client-type">Corporate Offices</div>
-            <div class="client-type">Architecture Firms</div>
-            <div class="client-type">Healthcare Facilities</div>
-            <div class="client-type">Educational Institutions</div>
-            <div class="client-type">Co-working Spaces</div>
-        </div>
-        
-        <p style="text-align: center; margin-top: 3rem; font-size: 1.2rem; max-width: 700px; margin-left: auto; margin-right: auto;">If you manage spaces where people need to feel belonging—not just occupy square footage—let's talk.</p>
-    </section>
-
-    <!-- Contact Section -->
-    <section class="contact-section" id="contact">
-        <h2 style="color: white;">Let's Create Something Meaningful</h2>
-        <p style="font-size: 1.2rem; max-width: 600px; margin: 1rem auto 2rem;">Based in Cork, working across Ireland and internationally</p>
-        
-        <div class="contact-methods">
-            <div>
-                <strong>Email</strong><br>
-                <span style="color: white;">don.samec@gmail.com</span>
-            </div>
-            <div>
-                <strong>Phone</strong><br>
-                <span style="color: white;">083 097 1140</span>
-            </div>
-        </div>
-        
-        <p style="margin-top: 3rem; opacity: 0.7; text-align: center;"><a href="https://www.poetonic.com" target="_blank" style="color: white; text-decoration: none; border-bottom: 2px solid #c44536; padding-bottom: 2px;">Artistic practice</a></p>
-    </section>
 </body>
 </html>
