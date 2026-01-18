@@ -278,6 +278,15 @@
             text-align: center;
             font-weight: 600;
             font-size: 1.1rem;
+            transition: all 0.3s ease;
+            cursor: default;
+        }
+        
+        .client-type:hover {
+            background: #1a1a1a;
+            color: white;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
         }
         
         /* Contact */
@@ -324,10 +333,22 @@
             z-index: 9999;
             align-items: center;
             justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
         
         .lightbox.active {
             display: flex;
+            animation: fadeIn 0.3s ease forwards;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
         }
         
         .lightbox-content {
@@ -337,6 +358,18 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            animation: popIn 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        
+        @keyframes popIn {
+            0% {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
         }
         
         .lightbox-image {
@@ -344,6 +377,12 @@
             max-height: 90vh;
             object-fit: contain;
             border-radius: 4px;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        .lightbox-image.loaded {
+            opacity: 1;
         }
         
         .lightbox-close {
@@ -489,14 +528,6 @@
             <p>When I moved to Cork five years ago, I felt invisible. Not unwelcome—just <em>placeless</em>. I'd walk streets I couldn't name, past buildings whose stories I didn't know, surrounded by a language I spoke but didn't <em>speak</em>.</p>
             
             <p>So I started photographing. Not landmarks—fragments. Textures on walls. Light through windows. The details that make a place <em>specific</em>. I collected archival imagery, old maps, newspaper clippings. I was trying to understand: <strong>What makes somewhere feel like home when you're a stranger?</strong></p>
-            
-            <p>People would greet me: "Hey Don, what's the story?" And I'd always ask myself—well, <strong>what <em>is</em> Cork's story?</strong></p>
-            
-            <p>The answer wasn't in knowing Cork's history perfectly. It was in <strong>actively engaging with it</strong>. The act of collecting, arranging, and recontextualizing these fragments created a bridge. Not between me and Cork's past—between me and Cork's <em>present</em>.</p>
-            
-            <p>I realized: <strong>belonging isn't automatic. It's built. Through attention, through curiosity, through making meaning from what's around you.</strong></p>
-            
-            <p>Your tenants, your employees, your family—they're all immigrants to your space. They arrive as strangers. The question is: does your space help them build that bridge to belonging? Or does it stay anonymous?</p>
         </div>
         
         <div class="masonry-grid">
@@ -507,6 +538,22 @@
             <div class="masonry-item"><img src="images/chapter1-image5.jpg" alt="Cork street photography"></div>
             <div class="masonry-item"><img src="images/chapter1-image6.jpg" alt="Cork street photography"></div>
         </div>
+        
+        <div class="chapter-text fade-in" style="margin-top: 4rem;">
+            
+            <p>People would greet me: "Hey Don, what's the story?" And I'd always ask myself—well, <strong>what <em>is</em> Cork's story?</strong></p>
+            
+            <p>The answer wasn't in knowing Cork's history perfectly. It was in <strong>actively engaging with it</strong>. The act of collecting, arranging, and recontextualizing these fragments created a bridge. Not between me and Cork's past—between me and Cork's <em>present</em>.</p>
+            
+            <p>I realized: <strong>belonging isn't automatic. It's built. Through attention, through curiosity, through making meaning from what's around you.</strong></p>
+            
+            <p>Your tenants, your employees, your family—they're all immigrants to your space. They arrive as strangers. The question is: does your space help them build that bridge to belonging? Or does it stay anonymous?</p>
+        </div>
+        
+        <div class="chapter2-image fade-in" style="margin-top: 4rem;">
+            <img src="images/chapter1-lacking-belonging.jpg" alt="Space lacking belonging">
+            <p style="text-align: center; margin-top: 1rem; font-style: italic; opacity: 0.8;">A space that lacks a bridge to belonging</p>
+        </div>
     </section>
 
     <!-- Chapter 2: Material Memory as Method -->
@@ -515,18 +562,13 @@
         <div class="chapter-text fade-in">
             <p>Here's what five years of experiments taught me: <strong>you can't manufacture belonging, but you can architect the conditions for it.</strong></p>
             
-            <p>When I tear a photograph from its original context—a street, a building, an archive—whether Cork, Seville, Tokyo, or DC—and reposition it on canvas, layered with paint, with other images, with text, something happens. It stops being <em>documentation</em> and becomes <em>conversation</em>.</p>
+            <p>When I tear a photograph from its original context—a street, a building, an archive—whether Cork, Seville, Barcelona, or DC—and reposition it on canvas, layered with paint, with other images, with text, something happens. It stops being <em>documentation</em> and becomes <em>conversation</em>.</p>
             
             <p>The viewer's eye doesn't glide past it. It stops. It asks: <em>What am I looking at? Where does this connect? What does this mean?</em></p>
         </div>
         
-        <div class="chapter2-image fade-in">
-            <img src="images/chapter2-image1.jpg" alt="Materials sourced from Seville">
-            <p style="text-align: center; margin-top: 1rem; font-style: italic; opacity: 0.8;">Materials sourced from Seville</p>
-        </div>
-        
         <div class="chapter2-image fade-in" style="margin-top: 3rem;">
-            <img src="images/chapter2-image2.jpg" alt="Flamenco - finished artwork">
+            <img src="images/chapter2-image1.jpg" alt="A Dream Goes on Forever - finished artwork">
             <p style="text-align: center; margin-top: 1rem; font-style: italic; opacity: 0.8;">The finished work: place-memory transformed into belonging</p>
         </div>
         
@@ -537,7 +579,7 @@
             
             <p>In an increasingly noisy digital world—where our attention is fractured by infinite scroll, algorithmic feeds, constant notifications—these installations offer something radically different: <strong>stillness through engagement</strong>. Not the passive consumption of content, but the active participation of seeing. They demand presence. They reward focus. They bring us back to the moment, to the physical, to the <em>here</em>.</p>
             
-            <p>The methodology works in Cork. It works in DC. It would work in Tokyo. Because the human need for <strong>textured, storied environments</strong> is universal.</p>
+            <p>The methodology works in Cork. It works in DC. It would work in Barcelona. Because the human need for <strong>textured, storied environments</strong> is universal.</p>
             
             <p>Modern architecture is beautiful but often <em>flat</em>—emotionally, cognitively, narratively. These installations add the dimension that makes people slow down, look closer, return. That's not aesthetic preference. That's material psychology.</p>
         </div>
@@ -572,7 +614,7 @@
                 <div class="case-study-text">
                     <p><strong>The Challenge:</strong> A modern residential development with beautiful architecture but cold communal spaces. Residents weren't connecting with the building or each other.</p>
                     
-                    <p><strong>The Approach:</strong> Three large-scale panels using reclaimed materials, archival imagery, and layered textures. Each piece designed to invite closer inspection and spark conversation.</p>
+                    <p><strong>The Approach:</strong> Three large-scale panels using reclaimed materials, archival imagery, and layered textures. Each piece designed to invite closer inspection and spark conversation through a more welcoming space.</p>
                     
                     <div class="quote">
                         "The building managers are greatly satisfied with the result"
@@ -580,7 +622,7 @@
                     
                     <p><strong>The space changed.</strong> People slowed down. They looked. They talked about it.</p>
                     
-                    <p><strong>That's the model:</strong> I come to your city, your space. I research your archival material, your visual identity. I source, curate, and create site-specific work that embeds <em>your place</em> into <em>your space</em>. The methodology is mine. The story is yours.</p>
+                    <p><strong>That's the model:</strong> I do thorough research of your city, your space, the archival materials at hand, your visual identity. I source, curate, and create site-specific work that embeds <em>your place</em> into <em>your space</em>. The methodology is mine. The story is yours.</p>
                 </div>
                 
                 <div class="case-study-image">
@@ -692,6 +734,8 @@
                         transition: background-color 0.3s, transform 0.2s;
                         width: 100%;
                         margin-top: 1rem;
+                        text-align: center;
+                        display: block;
                     }
                     
                     #mc_embed_signup .button:hover {
@@ -819,7 +863,7 @@
                 <div class="client-type">Architecture Firms</div>
                 <div class="client-type">Healthcare Facilities</div>
                 <div class="client-type">Educational Institutions</div>
-                <div class="client-type">Homeowners</div>
+                <div class="client-type">Private Residences</div>
             </div>
         </div>
     </section>
@@ -913,8 +957,20 @@
         }
         
         function updateLightboxImage() {
-            document.getElementById('lightbox-img').src = lightboxImages[currentLightboxIndex];
-            document.getElementById('lightbox-counter').textContent = `${currentLightboxIndex + 1} / ${lightboxImages.length}`;
+            const img = document.getElementById('lightbox-img');
+            img.classList.remove('loaded');
+            
+            // Fade out current image
+            setTimeout(() => {
+                img.src = lightboxImages[currentLightboxIndex];
+                
+                // Fade in new image once loaded
+                img.onload = function() {
+                    img.classList.add('loaded');
+                };
+                
+                document.getElementById('lightbox-counter').textContent = `${currentLightboxIndex + 1} / ${lightboxImages.length}`;
+            }, 100);
         }
         
         // Keyboard navigation
