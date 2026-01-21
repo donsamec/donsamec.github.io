@@ -167,50 +167,72 @@
             padding: 6rem 2rem;
             margin-top: 4rem;
         }
-        
+
         .case-study-container {
             max-width: 1200px;
             margin: 0 auto;
         }
-        
+
         .case-study h3 {
             font-size: 2.2rem;
-            margin-bottom: 2rem;
+            margin-bottom: 3rem;
+            text-align: center;
         }
-        
+
         .case-study-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
+            display: flex;
+            flex-direction: column;
             gap: 3rem;
-            align-items: start;
-            margin-bottom: 4rem;
+            align-items: center;
         }
-        
+
+        .case-study-image {
+            background: transparent;
+            border-radius: 8px;
+            overflow: hidden;
+            width: 100%;
+            max-width: 900px;
+        }
+
+        .case-study-image img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            display: block;
+        }
+
+        .case-study-text {
+            max-width: 800px;
+        }
+
         .case-study-text p {
             margin-bottom: 1rem;
             font-size: 1.1rem;
             line-height: 1.8;
         }
-        
-        .case-study-image {
-            background: transparent;
-            border-radius: 8px;
-            overflow: hidden;
-        }
-        
-        .case-study-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-        
+
         .quote {
+            background: white;
             border-left: 4px solid #c44536;
-            padding-left: 1.5rem;
-            margin: 2rem 0;
+            padding: 2rem 2rem 2rem 2.5rem;
+            margin: 3rem 0;
             font-style: italic;
-            opacity: 0.9;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border-radius: 4px;
+        }
+
+        .quote-text {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            color: #2c2c2c;
+        }
+
+        .quote-author {
+            font-style: normal;
+            font-size: 0.95rem;
+            color: #666;
+            font-weight: 500;
         }
         
         /* Process Gallery */
@@ -248,9 +270,15 @@
             display: block;
         }
         
+        /* Assessment CTA Section */
+        .assessment-section {
+            background: white;
+            padding: 5rem 2rem;
+        }
+
         /* Who This Is For */
         .who-section {
-            background: white;
+            background: #f8f8f8;
             padding: 5rem 2rem;
         }
         
@@ -291,34 +319,90 @@
         
         /* Contact */
         .contact-section {
-            background: #1a1a1a;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
             color: white;
             text-align: center;
-            padding: 5rem 2rem;
+            padding: 6rem 2rem;
+            position: relative;
+            overflow: hidden;
         }
-        
+
+        .contact-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(196, 69, 54, 0.5), transparent);
+        }
+
         .contact-section h2 {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
         }
-        
+
+        .contact-section .tagline {
+            font-size: 1.2rem;
+            opacity: 0.8;
+            margin-bottom: 3rem;
+            font-weight: 300;
+        }
+
         .contact-methods {
-            display: flex;
-            justify-content: center;
-            gap: 3rem;
-            margin: 2rem 0;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 800px;
+            margin: 0 auto 3rem;
         }
-        
-        .contact-methods a {
+
+        .contact-method {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .contact-method:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-5px);
+            border-color: #c44536;
+        }
+
+        .contact-method strong {
+            display: block;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.75rem;
+            color: #c44536;
+        }
+
+        .contact-method span {
+            font-size: 1.15rem;
+        }
+
+        .footer-link {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-link a {
             color: white;
             text-decoration: none;
             border-bottom: 2px solid #c44536;
             padding-bottom: 2px;
+            transition: all 0.3s ease;
+            font-weight: 500;
         }
-        
-        .contact-methods a:hover {
+
+        .footer-link a:hover {
             border-bottom-color: white;
+            color: #c44536;
         }
         
         /* Lightbox */
@@ -475,11 +559,15 @@
             .masonry-grid {
                 column-count: 2;
             }
-            
-            .case-study-content {
+
+            .contact-methods {
                 grid-template-columns: 1fr;
             }
-            
+
+            .contact-method {
+                padding: 1.5rem;
+            }
+
             .lightbox-nav {
                 width: 40px;
                 height: 40px;
@@ -608,27 +696,28 @@
     <div class="case-study fade-in">
         <div class="case-study-container">
             <h3>The 450k Installation</h3>
-            
+
             <div class="case-study-content">
-                <div class="case-study-text">
-                    <p><strong>The Challenge:</strong> A modern residential development with beautiful architecture but cold communal spaces. Residents weren't connecting with the building or each other.</p>
-                    
-                    <p><strong>The Approach:</strong> Three large-scale panels using reclaimed materials, archival imagery, and layered textures. Each piece designed to invite closer inspection and spark conversation through a more welcoming space.</p>
-                    
-                    <div class="quote">
-                        "The building managers are greatly satisfied with the result"
-                    </div>
-                    
-                    <p><strong>The space changed.</strong> People slowed down. They looked. They talked about it.</p>
-                    
-                    <p><strong>That's the model:</strong> I do thorough research of your city, your space, the archival materials at hand, your visual identity. I source, curate, and create site-specific work that embeds <em>your place</em> into <em>your space</em>. The methodology is mine. The story is yours.</p>
-                </div>
-                
                 <div class="case-study-image">
                     <img src="images/450k-final.jpg" alt="450k final installation">
                 </div>
+
+                <div class="case-study-text">
+                    <p><strong>The Challenge:</strong> A modern residential development with beautiful architecture but cold communal spaces. Residents weren't connecting with the building or each other.</p>
+
+                    <p><strong>The Approach:</strong> Three large-scale panels using reclaimed materials, archival imagery, and layered textures. Each piece designed to invite closer inspection and spark conversation through a more welcoming space.</p>
+
+                    <div class="quote">
+                        <div class="quote-text">"We were immensely satisfied with the results. Don's installation truly transformed our communal areas into welcoming spaces where residents naturally gather and connect. The artwork adds a warmth and character that our building was missing."</div>
+                        <div class="quote-author">— Property Management, 450k Residential Development</div>
+                    </div>
+
+                    <p><strong>The space changed.</strong> People slowed down. They looked. They talked about it.</p>
+
+                    <p><strong>That's the model:</strong> I do thorough research of your city, your space, the archival materials at hand, your visual identity. I source, curate, and create site-specific work that embeds <em>your place</em> into <em>your space</em>. The methodology is mine. The story is yours.</p>
+                </div>
             </div>
-            
+
             <!-- Process Gallery -->
             <div class="process-gallery">
                 <h4>From Concept to Installation</h4>
@@ -651,7 +740,7 @@
     </div>
 
     <!-- Assessment CTA Section -->
-    <section style="background: #f8f8f8; padding: 5rem 2rem;">
+    <section class="assessment-section">
         <div style="max-width: 800px; margin: 0 auto; text-align: center;">
             <h2 style="font-size: 2.5rem; margin-bottom: 1.5rem;">Does Your Space Create Belonging?</h2>
             <p style="font-size: 1.2rem; line-height: 1.7; color: #555; margin-bottom: 1rem;">Most property managers assume their spaces are fine.<br>Then they measure it.</p>
@@ -680,20 +769,22 @@
     <!-- Contact -->
     <section class="contact-section">
         <h2>Let's Create Something Meaningful</h2>
-        <p style="font-size: 1.2rem; max-width: 600px; margin: 1rem auto 2rem;">Based in Cork, working internationally</p>
-        
+        <p class="tagline">Based in Cork, working internationally</p>
+
         <div class="contact-methods">
-            <div>
-                <strong>Email</strong><br>
-                <span style="color: white;">don.samec@gmail.com</span>
+            <div class="contact-method">
+                <strong>Email</strong>
+                <span>don.samec@gmail.com</span>
             </div>
-            <div>
-                <strong>Phone</strong><br>
-                <span style="color: white;">083 097 1140</span>
+            <div class="contact-method">
+                <strong>Phone</strong>
+                <span>083 097 1140</span>
             </div>
         </div>
-        
-        <p style="margin-top: 3rem; opacity: 0.7; text-align: center;"><a href="https://www.poetonic.com" target="_blank" style="color: white; text-decoration: none; border-bottom: 2px solid #c44536; padding-bottom: 2px;">Artistic practice</a></p>
+
+        <div class="footer-link">
+            <a href="https://www.poetonic.com" target="_blank">View Artistic Practice</a>
+        </div>
     </section>
 
     <!-- Lightbox -->
