@@ -931,6 +931,8 @@
         // 450k Image Carousel
         let currentCarouselIndex = 0;
         const carouselImages = ['carousel-img-1', 'carousel-img-2', 'carousel-img-3'];
+        let carouselInterval = null;
+        let carouselStarted = false;
 
         function rotateCarousel() {
             // Remove active class from current image
@@ -943,8 +945,32 @@
             document.getElementById(carouselImages[currentCarouselIndex]).classList.add('active');
         }
 
-        // Start carousel rotation (change every 5 seconds)
-        setInterval(rotateCarousel, 5000);
+        function startCarousel() {
+            if (!carouselStarted) {
+                carouselStarted = true;
+                // Start carousel rotation (change every 5 seconds)
+                carouselInterval = setInterval(rotateCarousel, 5000);
+            }
+        }
+
+        // Observe the first carousel image to start carousel when visible
+        const carouselObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    startCarousel();
+                    // Stop observing once started
+                    carouselObserver.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.5 // Start when 50% of image is visible
+        });
+
+        // Start observing the first carousel image
+        const firstCarouselImage = document.getElementById('carousel-img-1');
+        if (firstCarouselImage) {
+            carouselObserver.observe(firstCarouselImage);
+        }
     </script>
 </body>
 </html>
