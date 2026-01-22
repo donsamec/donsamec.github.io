@@ -620,14 +620,18 @@
         
         async function submitResults(event) {
             event.preventDefault();
-            
+
             const email = document.getElementById('email-input').value;
             const score = Object.values(answers).reduce((a, b) => a + b, 0);
-            
+
             // Send to Google Sheets
             const googleSheetsURL = 'https://script.google.com/macros/s/AKfycbzOITolS61Y4yNYvFvoTMG_tWsZTSWT5HBMZpooyta0nfoL7Yzo2JQZfVYKBV9KTGuh/exec';
-            
+
+            // Send to Mailchimp
+            const mailchimpURL = 'https://donsamec.us1.list-manage.com/subscribe/post-json?u=90954a99a215ceec7843f6702&id=6a35eafac9';
+
             try {
+                // Submit to Google Sheets
                 await fetch(googleSheetsURL, {
                     method: 'POST',
                     mode: 'no-cors',
@@ -645,7 +649,21 @@
                         q5: answers[5]
                     })
                 });
-                
+
+                // Submit to Mailchimp using JSONP to avoid CORS
+                const mailchimpData = new URLSearchParams({
+                    EMAIL: email,
+                    FNAME: '', // Empty for now - could add a name field later
+                    LNAME: '',
+                    MMERGE7: 'Assessment Quiz', // Project Type
+                    b_90954a99a215ceec7843f6702_6a35eafac9: '' // Honeypot
+                });
+
+                // Use JSONP for Mailchimp (avoids CORS issues)
+                const script = document.createElement('script');
+                script.src = `${mailchimpURL}&${mailchimpData.toString()}&c=mailchimpCallback`;
+                document.body.appendChild(script);
+
                 // Show results
                 showResults(score);
             } catch (error) {
@@ -654,6 +672,15 @@
                 showResults(score);
             }
         }
+
+        // Mailchimp callback (required for JSONP)
+        window.mailchimpCallback = function(data) {
+            if (data.result === 'success') {
+                console.log('Successfully added to Mailchimp');
+            } else {
+                console.log('Mailchimp response:', data.msg);
+            }
+        };
         
         function showResults(score) {
             document.getElementById('email-gate').classList.remove('active');
