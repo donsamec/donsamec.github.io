@@ -201,6 +201,22 @@
             display: block;
         }
 
+        /* Carousel for 450k images */
+        .carousel-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
+        }
+
+        .carousel-image.active {
+            position: relative;
+            opacity: 1;
+        }
+
         .case-study-text {
             max-width: 800px;
         }
@@ -698,8 +714,10 @@
             <h3>The 450k Installation</h3>
 
             <div class="case-study-content">
-                <div class="case-study-image">
-                    <img src="images/450k-final.jpg" alt="450k final installation">
+                <div class="case-study-image" style="position: relative;">
+                    <img src="images/450k-final.jpg" alt="450k final installation" class="carousel-image active" id="carousel-img-1">
+                    <img src="images/450k-final-2.jpg" alt="450k final installation view 2" class="carousel-image" id="carousel-img-2">
+                    <img src="images/450k-final-3.jpg" alt="450k final installation view 3" class="carousel-image" id="carousel-img-3">
                 </div>
 
                 <div class="case-study-text">
@@ -909,6 +927,24 @@
                 changeLightboxImage(-1, new Event('swipe'));
             }
         }
+
+        // 450k Image Carousel
+        let currentCarouselIndex = 0;
+        const carouselImages = ['carousel-img-1', 'carousel-img-2', 'carousel-img-3'];
+
+        function rotateCarousel() {
+            // Remove active class from current image
+            document.getElementById(carouselImages[currentCarouselIndex]).classList.remove('active');
+
+            // Move to next image
+            currentCarouselIndex = (currentCarouselIndex + 1) % carouselImages.length;
+
+            // Add active class to new image
+            document.getElementById(carouselImages[currentCarouselIndex]).classList.add('active');
+        }
+
+        // Start carousel rotation (change every 5 seconds)
+        setInterval(rotateCarousel, 5000);
     </script>
 </body>
 </html>
