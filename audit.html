@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Placemaking Assessment | Don Samec</title>
+    <title>Belonging Audit | Don Samec</title>
     <link rel="icon" type="image/jpeg" href="favicon.jpg">
     <style>
         * {
@@ -109,7 +109,16 @@
             color: #888;
             margin-bottom: 0.5rem;
         }
-        
+
+        .question-category {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #888;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
         .question-text {
             font-size: 1.5rem;
             font-weight: 600;
@@ -354,22 +363,23 @@
                 <div class="progress-bar">
                     <div class="progress-fill" id="progress-fill"></div>
                 </div>
-                <div class="progress-text" id="progress-text">Question 1 of 5</div>
+                <div class="progress-text" id="progress-text">Section 1 of 5</div>
             </div>
             
             <!-- Landing Page -->
             <div class="landing" id="landing">
-                <h1>Does Your Space Create Belonging?</h1>
-                <p>Most property managers assume their spaces are fine.<br>Then they measure it.</p>
-                <p>This 5-question assessment reveals whether your environment fosters connection—or quietly repels it.</p>
+                <h1>The 2-Minute Belonging Audit</h1>
+                <p>Most property managers assume their communal spaces are fine. Then they measure them.</p>
+                <p>This audit reveals whether your lobby, corridors, and shared spaces foster connection — or quietly work against tenant retention.</p>
                 <p style="font-size: 1rem; color: #888;">Takes 2 minutes</p>
-                <button class="start-button" onclick="startQuiz()">Start Assessment</button>
+                <button class="start-button" onclick="startQuiz()">Start the Audit</button>
             </div>
             
             <!-- Question 1 -->
             <div class="question-container" id="q1">
-                <div class="question-number">Question 1 of 5</div>
-                <div class="question-text">Does your space reward a second look, or is it visually exhausted in one glance?</div>
+                <div class="question-number">Section 1 of 5</div>
+                <div class="question-category">Visual Depth</div>
+                <div class="question-text">Does your space reveal new details on repeated viewing, or is it visually exhausted in one glance?</div>
                 <div class="options">
                     <div class="option" onclick="selectAnswer(1, 1)">
                         <div class="option-number">1</div>
@@ -400,8 +410,9 @@
             
             <!-- Question 2 -->
             <div class="question-container" id="q2">
-                <div class="question-number">Question 2 of 5</div>
-                <div class="question-text">If someone unfamiliar with your city entered this space, would they know where they are?</div>
+                <div class="question-number">Section 2 of 5</div>
+                <div class="question-category">Sense of Place</div>
+                <div class="question-text">Would a visitor know what city they're in based on this space alone?</div>
                 <div class="options">
                     <div class="option" onclick="selectAnswer(2, 1)">
                         <div class="option-number">1</div>
@@ -432,8 +443,9 @@
             
             <!-- Question 3 -->
             <div class="question-container" id="q3">
-                <div class="question-number">Question 3 of 5</div>
-                <div class="question-text">Would you describe this space as 'inviting and warm' or 'professional but cold'?</div>
+                <div class="question-number">Section 3 of 5</div>
+                <div class="question-category">Emotional Temperature</div>
+                <div class="question-text">How would you characterize the space — warm and inviting, or professional but cold?</div>
                 <div class="options">
                     <div class="option" onclick="selectAnswer(3, 1)">
                         <div class="option-number">1</div>
@@ -464,8 +476,9 @@
             
             <!-- Question 4 -->
             <div class="question-container" id="q4">
-                <div class="question-number">Question 4 of 5</div>
-                <div class="question-text">Do people naturally pause and linger in this space, or treat it as a pass-through zone?</div>
+                <div class="question-number">Section 4 of 5</div>
+                <div class="question-category">Dwell Behavior</div>
+                <div class="question-text">Do people pause and linger here, or treat it as a pass-through zone?</div>
                 <div class="options">
                     <div class="option" onclick="selectAnswer(4, 1)">
                         <div class="option-number">1</div>
@@ -496,8 +509,9 @@
             
             <!-- Question 5 -->
             <div class="question-container" id="q5">
-                <div class="question-number">Question 5 of 5</div>
-                <div class="question-text">If a tenant/employee described this space to someone, would they call it memorable—or struggle to describe it?</div>
+                <div class="question-number">Section 5 of 5</div>
+                <div class="question-category">Memorability</div>
+                <div class="question-text">Could a tenant describe this space to a friend, or would they struggle to recall it?</div>
                 <div class="options">
                     <div class="option" onclick="selectAnswer(5, 1)">
                         <div class="option-number">1</div>
@@ -528,7 +542,7 @@
             
             <!-- Email Gate -->
             <div class="email-gate" id="email-gate">
-                <h2>Get Your Results</h2>
+                <h2>Get Your Audit Report</h2>
                 <p>Enter your email to see your score and receive personalized recommendations.</p>
                 <p style="font-size: 0.95rem; color: #666; margin-bottom: 2rem; max-width: 500px; margin-left: auto; margin-right: auto;">We'll also send occasional insights on placemaking and spatial psychology—no sales pitches, just ideas. Unsubscribe anytime.</p>
                 <form class="email-form" onsubmit="submitResults(event)">
@@ -544,7 +558,7 @@
                 <h2 id="results-headline"></h2>
                 <div class="results-content" id="results-content"></div>
                 <div class="cta-box">
-                    <h3>Next Step</h3>
+                    <h3>Recommended Action</h3>
                     <p id="cta-text"></p>
                     <div class="contact-info" style="margin-bottom: 2rem;">
                         <strong>Or contact directly:</strong><br>
@@ -609,7 +623,7 @@
         function updateProgress() {
             const progress = (currentQuestion / 5) * 100;
             document.getElementById('progress-fill').style.width = progress + '%';
-            document.getElementById('progress-text').textContent = `Question ${currentQuestion} of 5`;
+            document.getElementById('progress-text').textContent = `Section ${currentQuestion} of 5`;
         }
         
         function showEmailGate() {
@@ -690,60 +704,60 @@
             let headline, content, cta;
             
             if (score >= 20) {
-                headline = "Strong Foundation - Refinement Opportunities";
+                headline = "Audit Result: High Performing";
                 content = `
-                    <p>Your space creates belonging effectively and stands out from typical corporate environments. You've invested in creating an environment that resonates with people.</p>
-                    <p><strong>However,</strong> even strong spaces can be elevated further. Strategic refinements could:</p>
+                    <p>Your space creates belonging effectively and differentiates from competitors. This isn't just aesthetics—it's a business asset.</p>
+                    <p><strong>Business Impact:</strong></p>
                     <ul>
-                        <li>Deepen the emotional connection tenants/employees feel</li>
-                        <li>Create more distinctive visual moments that drive word-of-mouth</li>
-                        <li>Strengthen your competitive differentiation in the market</li>
+                        <li>Supports tenant retention through emotional connection</li>
+                        <li>Generates word-of-mouth (people recommend memorable spaces)</li>
+                        <li>Justifies premium positioning in the market</li>
                     </ul>
+                    <p><strong>Recommendation:</strong> Strategic refinements could elevate from "good" to "exceptional"—identify opportunities to deepen emotional connection and visual distinctiveness.</p>
                 `;
                 cta = "Let's identify specific opportunities to elevate your space from \"good\" to \"exceptional.\"";
             } else if (score >= 15) {
-                headline = "Functional But Forgettable - High Impact Potential";
+                headline = "Audit Result: Functional but Undifferentiated";
                 content = `
-                    <p>Your space works—people can navigate it, use it, occupy it. But it doesn't resonate. It's the architectural equivalent of background noise: present but unmemorable.</p>
-                    <p><strong>The cost?</strong></p>
+                    <p>Your space works operationally but doesn't resonate emotionally. It's the architectural equivalent of background noise: present but unmemorable.</p>
+                    <p><strong>Business Impact:</strong></p>
                     <ul>
                         <li>Tenants don't form emotional connections (impacts retention)</li>
-                        <li>Employees experience it as "just an office" (affects culture)</li>
-                        <li>Guests see it as generic (reduces word-of-mouth)</li>
-                        <li>You're losing competitive advantage to properties that create belonging</li>
+                        <li>Employees experience it as generic (affects culture)</li>
+                        <li>Guests see it as forgettable (reduces referrals)</li>
+                        <li>Losing competitive advantage to properties that create belonging</li>
                     </ul>
-                    <p><strong>The opportunity:</strong> Strategic placemaking interventions could transform this space into a destination that people remember, recommend, and want to return to.</p>
+                    <p><strong>Recommendation:</strong> Strategic placemaking interventions could transform this space into a destination people remember and recommend.</p>
                 `;
                 cta = "Let's discuss what's possible for your space. I'll show you how similar projects have transformed tenant experience and property value.";
             } else if (score >= 10) {
-                headline = "Belonging Deficit - Intervention Recommended";
+                headline = "Audit Result: Belonging Deficit Detected";
                 content = `
-                    <p>Your space actively works against human connection. People occupy it but don't engage with it. This isn't just an aesthetic issue—it's a business problem.</p>
-                    <p><strong>What this costs you:</strong></p>
+                    <p>Your space actively works against human connection. This isn't just an aesthetic issue—it's a business problem.</p>
+                    <p><strong>Business Impact:</strong></p>
                     <ul>
                         <li>Higher tenant turnover (people leave when they don't feel connected)</li>
                         <li>Slower leasing velocity (spaces that lack identity are harder to market)</li>
-                        <li>Reduced property value (belonging deficit directly impacts perceived value)</li>
+                        <li>Reduced property value (belonging deficit impacts perceived value)</li>
                         <li>Missed referrals (no one recommends a forgettable space)</li>
                     </ul>
-                    <p><strong>The good news:</strong> This is fixable. Spaces scoring in this range see the most dramatic transformations because there's so much untapped potential.</p>
-                    <p><strong>Case study:</strong> The 450k residential project scored 11/25 before intervention. Strategic placemaking transformed the lobby from a sterile pass-through into a destination. Building managers report measurable increases in tenant engagement and satisfaction.</p>
+                    <p><strong>Recommendation:</strong> Intervention recommended. Spaces in this range see dramatic transformations.</p>
+                    <p><strong>Case study:</strong> The 450k project scored 11/25 before intervention—now a destination with measurable tenant engagement increases.</p>
                 `;
                 cta = "This needs to be addressed. Let's talk about what strategic intervention looks like for your space—timeline, investment, and expected outcomes.";
             } else {
-                headline = "Critical - Your Space Is A Liability";
+                headline = "Audit Result: Critical — Immediate Attention Required";
                 content = `
-                    <p>Your space isn't neutral—it's actively harming your business. Every day without intervention costs you in:</p>
+                    <p>Your space is a liability actively harming retention and perception.</p>
+                    <p><strong>Business Impact:</strong></p>
                     <ul>
                         <li><strong>Tenant turnover:</strong> People don't stay where they don't belong</li>
                         <li><strong>Leasing challenges:</strong> Generic spaces take longer to fill</li>
                         <li><strong>Property devaluation:</strong> Lack of identity depresses market value</li>
-                        <li><strong>Reputation:</strong> Word spreads about forgettable, cold environments</li>
+                        <li><strong>Reputation damage:</strong> Word spreads about forgettable, cold environments</li>
                     </ul>
-                    <p><strong>This is urgent.</strong></p>
-                    <p>Spaces scoring this low are typically modern developments that prioritized efficiency over humanity, renovations that stripped character without replacing it, or buildings designed by committees, not for people.</p>
-                    <p><strong>The path forward:</strong> Transformation is possible, but it requires strategic intervention—not decoration, but fundamental placemaking that gives your space a heartbeat.</p>
-                    <p><strong>I've solved this before.</strong> The 450k project started here. Through site-specific installation and material storytelling, we transformed architectural sterility into belonging.</p>
+                    <p><strong>Recommendation:</strong> Requires strategic intervention, not decoration. Transformation is possible.</p>
+                    <p><strong>Reference:</strong> Solved this before with the 450k project—transformed architectural sterility into belonging through site-specific installation and material storytelling.</p>
                 `;
                 cta = "This can't wait. Let's schedule a consultation this week to assess what's possible and map a path forward.";
             }
