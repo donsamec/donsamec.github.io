@@ -259,15 +259,58 @@
         .submit-button:hover {
             background: #333;
         }
-        
+
+        /* Loading State */
+        .loading-container {
+            text-align: center;
+            padding: 3rem 2rem;
+        }
+
+        .loading-text {
+            font-size: 1.2rem;
+            color: #555;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+
+        .loading-bar {
+            width: 100%;
+            max-width: 400px;
+            height: 8px;
+            background: #e0e0e0;
+            border-radius: 4px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .loading-progress {
+            height: 100%;
+            background: #1a1a1a;
+            width: 0%;
+            animation: loadingProgress 2s ease-out forwards;
+            border-radius: 4px;
+        }
+
+        @keyframes loadingProgress {
+            0% { width: 0%; }
+            50% { width: 70%; }
+            100% { width: 100%; }
+        }
+
         /* Results */
         .results {
             display: none;
             text-align: center;
+            opacity: 0;
+            transition: opacity 0.6s ease-in-out;
         }
-        
+
         .results.active {
             display: block;
+        }
+
+        .results.fade-in {
+            opacity: 1;
         }
         
         .score-display {
@@ -657,7 +700,15 @@
                     <button type="submit" class="submit-button">Get My Score</button>
                 </form>
             </div>
-            
+
+            <!-- Loading State -->
+            <div class="loading-container" id="loading-container" style="display: none;">
+                <div class="loading-text">Analyzing your responses...</div>
+                <div class="loading-bar">
+                    <div class="loading-progress"></div>
+                </div>
+            </div>
+
             <!-- Results -->
             <div class="results" id="results">
                 <div class="score-display" id="score-display"></div>
@@ -820,6 +871,10 @@
             userEmail = email;
             userScore = score;
 
+            // Hide email gate, show loading
+            document.getElementById('email-gate').classList.remove('active');
+            document.getElementById('loading-container').style.display = 'block';
+
             // Send to Google Sheets
             const googleSheetsURL = 'https://script.google.com/macros/s/AKfycbzOITolS61Y4yNYvFvoTMG_tWsZTSWT5HBMZpooyta0nfoL7Yzo2JQZfVYKBV9KTGuh/exec';
 
@@ -827,24 +882,8 @@
             const mailchimpURL = 'https://donsamec.us1.list-manage.com/subscribe/post-json?u=90954a99a215ceec7843f6702&id=6a35eafac9';
 
             try {
-                // Submit to Google Sheets
-                await fetch(googleSheetsURL, {
-                    method: 'POST',
-                    mode: 'no-cors',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        timestamp: new Date().toISOString(),
-                        email: email,
-                        score: score,
-                        q1: answers[1],
-                        q2: answers[2],
-                        q3: answers[3],
-                        q4: answers[4],
-                        q5: answers[5]
-                    })
-                });
+                // Don't submit to Google Sheets yet - wait for questionnaire
+                // Data will be submitted when questionnaire is completed
 
                 // Submit to Mailchimp using JSONP to avoid CORS
                 const mailchimpData = new URLSearchParams({
@@ -879,9 +918,17 @@
         };
         
         function showResults(score) {
-            document.getElementById('email-gate').classList.remove('active');
-            document.getElementById('results').classList.add('active');
-            document.getElementById('score-display').textContent = score;
+            // Wait for loading animation (2s), then hide loading and show results with fade
+            setTimeout(() => {
+                document.getElementById('loading-container').style.display = 'none';
+                const resultsEl = document.getElementById('results');
+                resultsEl.classList.add('active');
+                document.getElementById('score-display').textContent = score;
+
+                // Trigger fade-in after a small delay
+                setTimeout(() => {
+                    resultsEl.classList.add('fade-in');
+                }, 50);
             
             let headline, content, cta;
             
@@ -944,9 +991,10 @@
                 cta = "This can't wait. Let's schedule a consultation this week to assess what's possible and map a path forward.";
             }
             
-            document.getElementById('results-headline').textContent = headline;
-            document.getElementById('results-content').innerHTML = content;
-            document.getElementById('cta-text').textContent = cta;
+                document.getElementById('results-headline').textContent = headline;
+                document.getElementById('results-content').innerHTML = content;
+                document.getElementById('cta-text').textContent = cta;
+            }, 2000); // Wait 2s for loading animation
         }
         
         function showCalendly() {
