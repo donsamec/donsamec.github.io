@@ -379,113 +379,26 @@
             font-weight: 600;
         }
 
-        /* Questionnaire Styles */
-        .questionnaire {
-            margin: 2rem 0;
-            padding: 2rem;
+        .pdf-button {
+            padding: 1rem 2.5rem;
+            border: 2px solid #1a1a1a;
             background: white;
-            border-radius: 8px;
-        }
-
-        .question-group {
-            margin-bottom: 2rem;
-        }
-
-        .question-label {
-            display: block;
+            color: #1a1a1a;
+            border-radius: 4px;
             font-size: 1rem;
             font-weight: 600;
-            color: #2c2c2c;
-            margin-bottom: 0.75rem;
-        }
-
-        .select-input {
-            width: 100%;
-            padding: 0.75rem;
-            border: 2px solid #e0e0e0;
-            border-radius: 4px;
-            font-size: 1rem;
-            background: white;
             cursor: pointer;
-            transition: border-color 0.3s;
-        }
-
-        .select-input:focus {
-            outline: none;
-            border-color: #1a1a1a;
-        }
-
-        .checkbox-group {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 0.75rem;
-        }
-
-        .checkbox-label {
-            display: flex;
+            transition: all 0.3s;
+            display: inline-flex;
             align-items: center;
-            gap: 0.75rem;
-            cursor: pointer;
-            font-size: 1rem;
-            color: #2c2c2c;
-            padding: 1rem 1.25rem;
-            border: 2px solid #e0e0e0;
-            border-radius: 6px;
-            transition: all 0.3s ease;
-            background: white;
-            font-weight: 500;
         }
 
-        .checkbox-label:hover {
-            border-color: #1a1a1a;
+        .pdf-button:hover {
             background: #f8f8f8;
-            transform: translateY(-1px);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
 
-        .checkbox-label input[type="checkbox"] {
-            width: 20px;
-            height: 20px;
-            cursor: pointer;
-            accent-color: #1a1a1a;
-            flex-shrink: 0;
-        }
-
-        .checkbox-label input[type="checkbox"]:checked {
-            background: #1a1a1a;
-        }
-
-        .checkbox-label input[type="checkbox"]:disabled {
-            cursor: not-allowed;
-            opacity: 0.5;
-        }
-
-        .checkbox-label.checked {
-            border-color: #1a1a1a;
-            background: #f8f8f8;
-        }
-
-        @media (max-width: 600px) {
-            .checkbox-group {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .textarea-input {
-            width: 100%;
-            padding: 0.75rem;
-            border: 2px solid #e0e0e0;
-            border-radius: 4px;
-            font-size: 1rem;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
-            resize: vertical;
-            transition: border-color 0.3s;
-        }
-
-        .textarea-input:focus {
-            outline: none;
-            border-color: #1a1a1a;
-        }
 
         @media (max-width: 768px) {
             .quiz-card {
@@ -715,88 +628,33 @@
                 <h2 id="results-headline"></h2>
                 <div class="results-content" id="results-content"></div>
 
-                <!-- Post-Audit Questionnaire -->
-                <div class="questionnaire" id="questionnaire">
-                    <h3 style="font-size: 1.5rem; margin-bottom: 1.5rem; text-align: center;">A Few Quick Questions Before We Talk</h3>
-
-                    <div class="question-group">
-                        <label class="question-label">What type of space is this?</label>
-                        <select id="space-type" class="select-input" required>
-                            <option value="">Select one...</option>
-                            <option value="Residential">Residential</option>
-                            <option value="Hotel">Hotel</option>
-                            <option value="Corporate Office">Corporate Office</option>
-                            <option value="Healthcare">Healthcare</option>
-                            <option value="Educational">Educational</option>
-                            <option value="Other">Other</option>
-                        </select>
-                    </div>
-
-                    <div class="question-group">
-                        <label class="question-label">Who uses this space most?</label>
-                        <select id="primary-users" class="select-input" required>
-                            <option value="">Select one...</option>
-                            <option value="Tenants">Tenants</option>
-                            <option value="Guests">Guests</option>
-                            <option value="Employees">Employees</option>
-                            <option value="Patients">Patients</option>
-                            <option value="Students">Students</option>
-                            <option value="Mixed">Mixed</option>
-                        </select>
-                    </div>
-
-                    <div class="question-group">
-                        <label class="question-label">What do you want people to feel when they enter? (Select 2-3)</label>
-                        <div class="checkbox-group" id="feelings-group">
-                            <label class="checkbox-label">
-                                <input type="checkbox" name="feelings" value="Welcomed" onchange="limitCheckboxes('feelings', 3)"> Welcomed
-                            </label>
-                            <label class="checkbox-label">
-                                <input type="checkbox" name="feelings" value="Calm" onchange="limitCheckboxes('feelings', 3)"> Calm
-                            </label>
-                            <label class="checkbox-label">
-                                <input type="checkbox" name="feelings" value="Energized" onchange="limitCheckboxes('feelings', 3)"> Energized
-                            </label>
-                            <label class="checkbox-label">
-                                <input type="checkbox" name="feelings" value="Curious" onchange="limitCheckboxes('feelings', 3)"> Curious
-                            </label>
-                            <label class="checkbox-label">
-                                <input type="checkbox" name="feelings" value="At Home" onchange="limitCheckboxes('feelings', 3)"> At Home
-                            </label>
-                            <label class="checkbox-label">
-                                <input type="checkbox" name="feelings" value="Impressed" onchange="limitCheckboxes('feelings', 3)"> Impressed
-                            </label>
-                        </div>
-                        <p style="font-size: 0.85rem; color: #888; margin-top: 0.5rem;" id="feelings-counter">0/3 selected</p>
-                    </div>
-
-                    <div class="question-group">
-                        <label class="question-label">What's not working right now? (Optional)</label>
-                        <textarea id="current-problem" class="textarea-input" rows="4" placeholder="E.g., The lobby feels cold, people rush through without stopping..."></textarea>
-                    </div>
-
-                    <button onclick="submitQuestionnaire()" class="submit-button" id="questionnaire-submit">Submit & Book Your Call</button>
+                <!-- PDF Download Button -->
+                <div style="text-align: center; margin: 3rem 0 2rem;">
+                    <button onclick="downloadPDF()" class="pdf-button">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: middle; margin-right: 8px;">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="7 10 12 15 17 10"></polyline>
+                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                        </svg>
+                        Download Your Audit Report (PDF)
+                    </button>
                 </div>
 
-                <!-- Bridging Text (hidden initially) -->
-                <div id="bridging-text" style="display: none; text-align: center; margin: 2rem 0; padding: 1.5rem; background: #f8f8f8; border-radius: 8px; opacity: 0; transition: opacity 0.5s ease-in-out;">
-                    <p style="font-size: 1.1rem; color: #555; line-height: 1.7;">Based on what you've shared, I'll prepare initial thoughts on how site-specific artwork could address this before our call.</p>
-                </div>
-
-                <div class="cta-box" id="cta-box" style="display: none; opacity: 0; transition: opacity 0.5s ease-in-out;">
+                <!-- CTA Box -->
+                <div class="cta-box" id="cta-box">
                     <h3>Recommended Action</h3>
                     <p id="cta-text"></p>
                     <div class="contact-info" style="margin-bottom: 2rem;">
                         <strong>Or contact directly:</strong><br>
                         don.samec@gmail.com | +353 83 097 1140
                     </div>
-                    
+
                     <!-- Calendly Scheduling -->
                     <div style="margin-top: 2rem;">
                         <button onclick="showCalendly()" class="start-button" style="width: 100%; margin-bottom: 1.5rem;">
                             Schedule Your Consultation
                         </button>
-                        
+
                         <div id="calendly-container" style="display: none; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.1); margin-top: 1.5rem;">
                             <div class="calendly-inline-widget" data-url="https://calendly.com/donsamec/15-minutes-discovery-call?hide_event_type_details=1&hide_gdpr_banner=1&primary_color=1a1a1a" style="min-width:320px;height:700px;"></div>
                         </div>
@@ -807,11 +665,14 @@
         </div>
     </div>
     
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script>
         let currentQuestion = 1;
         const answers = {};
         let userEmail = '';
         let userScore = 0;
+        let resultsHeadline = '';
+        let resultsContent = '';
         
         function startQuiz() {
             document.getElementById('landing').style.display = 'none';
@@ -866,7 +727,7 @@
             const email = document.getElementById('email-input').value;
             const score = Object.values(answers).reduce((a, b) => a + b, 0);
 
-            // Store globally for questionnaire
+            // Store globally for PDF generation
             userEmail = email;
             userScore = score;
 
@@ -881,16 +742,32 @@
             const mailchimpURL = 'https://donsamec.us1.list-manage.com/subscribe/post-json?u=90954a99a215ceec7843f6702&id=6a35eafac9';
 
             try {
-                // Don't submit to Google Sheets yet - wait for questionnaire
-                // Data will be submitted when questionnaire is completed
+                // Submit to Google Sheets immediately
+                await fetch(googleSheetsURL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        timestamp: new Date().toISOString(),
+                        email: email,
+                        score: score,
+                        q1: answers[1],
+                        q2: answers[2],
+                        q3: answers[3],
+                        q4: answers[4],
+                        q5: answers[5]
+                    })
+                });
 
                 // Submit to Mailchimp using JSONP to avoid CORS
                 const mailchimpData = new URLSearchParams({
                     EMAIL: email,
-                    FNAME: '', // Empty for now - could add a name field later
+                    FNAME: '',
                     LNAME: '',
-                    MMERGE7: 'Assessment Quiz', // Project Type
-                    b_90954a99a215ceec7843f6702_6a35eafac9: '' // Honeypot
+                    MMERGE7: 'Assessment Quiz',
+                    b_90954a99a215ceec7843f6702_6a35eafac9: ''
                 });
 
                 // Use JSONP for Mailchimp (avoids CORS issues)
@@ -928,9 +805,9 @@
                 setTimeout(() => {
                     resultsEl.classList.add('fade-in');
                 }, 50);
-            
+
             let headline, content, cta;
-            
+
             if (score >= 20) {
                 headline = "Audit Result: High Performing";
                 content = `
@@ -989,7 +866,11 @@
                 `;
                 cta = "This can't wait. Let's schedule a consultation this week to assess what's possible and map a path forward.";
             }
-            
+
+                // Store for PDF generation
+                resultsHeadline = headline;
+                resultsContent = content;
+
                 document.getElementById('results-headline').textContent = headline;
                 document.getElementById('results-content').innerHTML = content;
                 document.getElementById('cta-text').textContent = cta;
@@ -1010,124 +891,121 @@
             }
         }
 
-        // Limit checkbox selections
-        function limitCheckboxes(name, max) {
-            const checkboxes = document.querySelectorAll(`input[name="${name}"]`);
-            const checked = Array.from(checkboxes).filter(cb => cb.checked);
-            const counter = document.getElementById('feelings-counter');
+        // PDF Download Function
+        function downloadPDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
 
-            // Update counter
-            counter.textContent = `${checked.length}/${max} selected`;
+            const pageWidth = doc.internal.pageSize.getWidth();
+            const margin = 20;
+            const contentWidth = pageWidth - (margin * 2);
+            let yPos = 20;
 
-            // Disable unchecked boxes if limit reached and update visual state
-            checkboxes.forEach(cb => {
-                const label = cb.parentElement;
+            // Header
+            doc.setFontSize(20);
+            doc.setFont(undefined, 'bold');
+            doc.text('Belonging Audit Report', margin, yPos);
+            yPos += 10;
 
-                // Toggle checked class on label
-                if (cb.checked) {
-                    label.classList.add('checked');
-                } else {
-                    label.classList.remove('checked');
-                }
+            doc.setFontSize(10);
+            doc.setFont(undefined, 'normal');
+            doc.text(`Prepared for: ${userEmail}`, margin, yPos);
+            yPos += 5;
+            doc.text(`Date: ${new Date().toLocaleDateString()}`, margin, yPos);
+            yPos += 15;
 
-                // Disable unchecked boxes if limit reached
-                if (!cb.checked && checked.length >= max) {
-                    cb.disabled = true;
-                    label.style.opacity = '0.4';
-                } else {
-                    cb.disabled = false;
-                    label.style.opacity = '1';
-                }
+            // Overall Score
+            doc.setFontSize(16);
+            doc.setFont(undefined, 'bold');
+            doc.text('Overall Score', margin, yPos);
+            yPos += 10;
+
+            doc.setFontSize(32);
+            doc.text(`${userScore}/25`, margin, yPos);
+            yPos += 12;
+
+            doc.setFontSize(14);
+            doc.text(resultsHeadline, margin, yPos);
+            yPos += 15;
+
+            // Category Breakdown
+            doc.setFontSize(12);
+            doc.setFont(undefined, 'bold');
+            doc.text('Category Breakdown', margin, yPos);
+            yPos += 8;
+
+            doc.setFontSize(10);
+            doc.setFont(undefined, 'normal');
+            const categories = [
+                { name: 'Visual Depth', score: answers[1] },
+                { name: 'Sense of Place', score: answers[2] },
+                { name: 'Emotional Temperature', score: answers[3] },
+                { name: 'Dwell Behavior', score: answers[4] },
+                { name: 'Memorability', score: answers[5] }
+            ];
+
+            categories.forEach(cat => {
+                doc.text(`${cat.name}: ${cat.score}/5`, margin, yPos);
+                yPos += 6;
             });
-        }
+            yPos += 8;
 
-        // Submit questionnaire and reveal CTA
-        async function submitQuestionnaire() {
-            const spaceType = document.getElementById('space-type').value;
-            const primaryUsers = document.getElementById('primary-users').value;
-            const feelingsCheckboxes = document.querySelectorAll('input[name="feelings"]:checked');
-            const feelings = Array.from(feelingsCheckboxes).map(cb => cb.value);
-            const currentProblem = document.getElementById('current-problem').value;
+            // Extract text from HTML content for PDF
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = resultsContent;
+            const textContent = tempDiv.textContent || tempDiv.innerText;
 
-            // Validation
-            if (!spaceType) {
-                alert('Please select a space type');
-                return;
+            // Business Impact & Recommendation
+            doc.setFontSize(12);
+            doc.setFont(undefined, 'bold');
+            doc.text('Analysis', margin, yPos);
+            yPos += 8;
+
+            doc.setFontSize(9);
+            doc.setFont(undefined, 'normal');
+            const lines = doc.splitTextToSize(textContent, contentWidth);
+
+            lines.forEach(line => {
+                if (yPos > 270) {
+                    doc.addPage();
+                    yPos = 20;
+                }
+                doc.text(line, margin, yPos);
+                yPos += 5;
+            });
+
+            // Next Steps
+            yPos += 10;
+            if (yPos > 250) {
+                doc.addPage();
+                yPos = 20;
             }
-            if (!primaryUsers) {
-                alert('Please select who uses the space');
-                return;
-            }
-            if (feelings.length === 0) {
-                alert('Please select at least one desired feeling');
-                return;
-            }
 
-            // Submit to Google Sheets with questionnaire data
-            const googleSheetsURL = 'https://script.google.com/macros/s/AKfycbzOITolS61Y4yNYvFvoTMG_tWsZTSWT5HBMZpooyta0nfoL7Yzo2JQZfVYKBV9KTGuh/exec';
+            doc.setFontSize(12);
+            doc.setFont(undefined, 'bold');
+            doc.text('Next Steps', margin, yPos);
+            yPos += 8;
 
-            try {
-                await fetch(googleSheetsURL, {
-                    method: 'POST',
-                    mode: 'no-cors',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        timestamp: new Date().toISOString(),
-                        email: userEmail,
-                        score: userScore,
-                        q1: answers[1],
-                        q2: answers[2],
-                        q3: answers[3],
-                        q4: answers[4],
-                        q5: answers[5],
-                        space_type: spaceType,
-                        primary_users: primaryUsers,
-                        desired_feelings: feelings.join(', '),
-                        current_problem: currentProblem
-                    })
-                });
+            doc.setFontSize(10);
+            doc.setFont(undefined, 'normal');
+            doc.text('Ready to transform your space?', margin, yPos);
+            yPos += 6;
+            doc.text('Book a consultation: calendly.com/donsamec/15-minutes-discovery-call', margin, yPos);
+            yPos += 6;
+            doc.text('Or contact directly:', margin, yPos);
+            yPos += 6;
+            doc.text('don.samec@gmail.com | +353 83 097 1140', margin, yPos);
 
-                // Hide questionnaire, show bridging text and CTA with fade-in
-                document.getElementById('questionnaire').style.display = 'none';
+            // Footer
+            yPos = doc.internal.pageSize.getHeight() - 20;
+            doc.setFontSize(9);
+            doc.setFont(undefined, 'italic');
+            doc.text('Don Samec | Transforming Sterile Spaces into Places of Belonging', margin, yPos);
+            yPos += 5;
+            doc.text('donsamec.com', margin, yPos);
 
-                const bridgingText = document.getElementById('bridging-text');
-                const ctaBox = document.getElementById('cta-box');
-
-                bridgingText.style.display = 'block';
-                ctaBox.style.display = 'block';
-
-                // Trigger fade-in after display is set
-                setTimeout(() => {
-                    bridgingText.style.opacity = '1';
-                    ctaBox.style.opacity = '1';
-                }, 50);
-
-                // Scroll to CTA
-                setTimeout(() => {
-                    ctaBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                }, 100);
-            } catch (error) {
-                console.error('Error submitting questionnaire:', error);
-                // Still show the CTA even if submission fails
-                document.getElementById('questionnaire').style.display = 'none';
-
-                const bridgingText = document.getElementById('bridging-text');
-                const ctaBox = document.getElementById('cta-box');
-
-                bridgingText.style.display = 'block';
-                ctaBox.style.display = 'block';
-
-                setTimeout(() => {
-                    bridgingText.style.opacity = '1';
-                    ctaBox.style.opacity = '1';
-                }, 50);
-
-                setTimeout(() => {
-                    ctaBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                }, 100);
-            }
+            // Save PDF
+            doc.save(`Belonging-Audit-Report-${userScore}.pdf`);
         }
     </script>
 </body>
