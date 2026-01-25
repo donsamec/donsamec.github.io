@@ -705,16 +705,16 @@
                 </div>
 
                 <!-- Bridging Text (hidden initially) -->
-                <div id="bridging-text" style="display: none; text-align: center; margin: 2rem 0; padding: 1.5rem; background: #f8f8f8; border-radius: 8px;">
+                <div id="bridging-text" style="display: none; text-align: center; margin: 2rem 0; padding: 1.5rem; background: #f8f8f8; border-radius: 8px; opacity: 0; transition: opacity 0.5s ease-in-out;">
                     <p style="font-size: 1.1rem; color: #555; line-height: 1.7;">Based on what you've shared, I'll prepare initial thoughts on how site-specific artwork could address this before our call.</p>
                 </div>
 
-                <div class="cta-box" id="cta-box" style="display: none;">
+                <div class="cta-box" id="cta-box" style="display: none; opacity: 0; transition: opacity 0.5s ease-in-out;">
                     <h3>Recommended Action</h3>
                     <p id="cta-text"></p>
                     <div class="contact-info" style="margin-bottom: 2rem;">
                         <strong>Or contact directly:</strong><br>
-                        don.samec@gmail.com | 083 097 1140
+                        don.samec@gmail.com | +353 83 097 1140
                     </div>
                     
                     <!-- Calendly Scheduling -->
@@ -1008,19 +1008,44 @@
                     })
                 });
 
-                // Hide questionnaire, show bridging text and CTA
+                // Hide questionnaire, show bridging text and CTA with fade-in
                 document.getElementById('questionnaire').style.display = 'none';
-                document.getElementById('bridging-text').style.display = 'block';
-                document.getElementById('cta-box').style.display = 'block';
+
+                const bridgingText = document.getElementById('bridging-text');
+                const ctaBox = document.getElementById('cta-box');
+
+                bridgingText.style.display = 'block';
+                ctaBox.style.display = 'block';
+
+                // Trigger fade-in after display is set
+                setTimeout(() => {
+                    bridgingText.style.opacity = '1';
+                    ctaBox.style.opacity = '1';
+                }, 50);
 
                 // Scroll to CTA
-                document.getElementById('cta-box').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                setTimeout(() => {
+                    ctaBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }, 100);
             } catch (error) {
                 console.error('Error submitting questionnaire:', error);
                 // Still show the CTA even if submission fails
                 document.getElementById('questionnaire').style.display = 'none';
-                document.getElementById('bridging-text').style.display = 'block';
-                document.getElementById('cta-box').style.display = 'block';
+
+                const bridgingText = document.getElementById('bridging-text');
+                const ctaBox = document.getElementById('cta-box');
+
+                bridgingText.style.display = 'block';
+                ctaBox.style.display = 'block';
+
+                setTimeout(() => {
+                    bridgingText.style.opacity = '1';
+                    ctaBox.style.opacity = '1';
+                }, 50);
+
+                setTimeout(() => {
+                    ctaBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }, 100);
             }
         }
     </script>
