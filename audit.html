@@ -809,62 +809,38 @@
             let headline, content, cta;
 
             if (score >= 20) {
-                headline = "Audit Result: High Performing";
+                headline = "Your Space Is Already Working";
                 content = `
-                    <p>Your space creates belonging effectively and differentiates from competitors. This isn't just aesthetics—it's a business asset.</p>
-                    <p><strong>Business Impact:</strong></p>
-                    <ul>
-                        <li>Supports tenant retention through emotional connection</li>
-                        <li>Generates word-of-mouth (people recommend memorable spaces)</li>
-                        <li>Justifies premium positioning in the market</li>
-                    </ul>
-                    <p><strong>Recommendation:</strong> Strategic refinements could elevate from "good" to "exceptional"—identify opportunities to deepen emotional connection and visual distinctiveness.</p>
+                    <p>Your space scores high on belonging — people notice it, linger in it, and can describe it to others. That's rare.</p>
+                    <p>You may not need intervention. But if you're curious about opportunities to deepen what's already working — a signature piece, a subtle layer of local story, something that rewards closer attention — that's a conversation worth having.</p>
                 `;
-                cta = "Let's identify specific opportunities to elevate your space from \"good\" to \"exceptional.\"";
+                cta = "If you'd like to explore what 'exceptional' could look like, I'm happy to talk. But honestly? You're already ahead of most.";
             } else if (score >= 15) {
-                headline = "Audit Result: Functional but Undifferentiated";
+                headline = "Solid Foundations, Missing Soul";
                 content = `
-                    <p>Your space works operationally but doesn't resonate emotionally. It's the architectural equivalent of background noise: present but unmemorable.</p>
-                    <p><strong>Business Impact:</strong></p>
-                    <ul>
-                        <li>Tenants don't form emotional connections (impacts retention)</li>
-                        <li>Employees experience it as generic (affects culture)</li>
-                        <li>Guests see it as forgettable (reduces referrals)</li>
-                        <li>Losing competitive advantage to properties that create belonging</li>
-                    </ul>
-                    <p><strong>Recommendation:</strong> Strategic placemaking interventions could transform this space into a destination people remember and recommend.</p>
+                    <p>Your space functions well — clean, professional, does its job. But it doesn't stay with people. They pass through without pausing. They couldn't describe it to a friend.</p>
+                    <p>This is actually a good position to be in. The bones are there. What's missing is story — something that makes the space feel specific, layered, worth a second look.</p>
+                    <p>This is where material memory works best: taking a functional space and giving it texture, history, and visual depth that rewards attention.</p>
                 `;
-                cta = "Let's discuss what's possible for your space. I'll show you how similar projects have transformed tenant experience and property value.";
+                cta = "I'd like to learn more about your space, who uses it, and what you want them to feel. From there, I can show you how site-specific artwork might bring it to life.";
             } else if (score >= 10) {
-                headline = "Audit Result: Belonging Deficit Detected";
+                headline = "A Blank Canvas";
                 content = `
-                    <p>Your space actively works against human connection. This isn't just an aesthetic issue—it's a business problem.</p>
-                    <p><strong>Business Impact:</strong></p>
-                    <ul>
-                        <li>Higher tenant turnover (people leave when they don't feel connected)</li>
-                        <li>Slower leasing velocity (spaces that lack identity are harder to market)</li>
-                        <li>Reduced property value (belonging deficit impacts perceived value)</li>
-                        <li>Missed referrals (no one recommends a forgettable space)</li>
-                    </ul>
-                    <p><strong>Recommendation:</strong> Intervention recommended. Spaces in this range see dramatic transformations.</p>
-                    <p><strong>Case study:</strong> The 450k project scored 11/25 before intervention—now a destination with measurable tenant engagement increases.</p>
+                    <p>Your space is forgettable — but that's not a criticism. It means there's room to build something meaningful.</p>
+                    <p>Right now, people move through without stopping. They don't connect with the environment or each other. The space isn't telling a story.</p>
+                    <p>This is where transformation happens. Spaces in this range have the most potential for dramatic change — because there's nothing competing with the intervention. The art becomes the anchor.</p>
+                    <p><strong>Example:</strong> The 450k project scored 11/25 before I started. Cold lobby, beautiful architecture, zero personality. Now it's a destination — residents pause, visitors comment, and the property manager is thrilled with the transformation.</p>
                 `;
-                cta = "This needs to be addressed. Let's talk about what strategic intervention looks like for your space—timeline, investment, and expected outcomes.";
+                cta = "I'd like to understand who uses your space and what you want them to feel. That's where the work begins.";
             } else {
-                headline = "Audit Result: Critical — Immediate Attention Required";
+                headline = "Starting From Zero";
                 content = `
-                    <p>Your space is a liability actively harming retention and perception.</p>
-                    <p><strong>Business Impact:</strong></p>
-                    <ul>
-                        <li><strong>Tenant turnover:</strong> People don't stay where they don't belong</li>
-                        <li><strong>Leasing challenges:</strong> Generic spaces take longer to fill</li>
-                        <li><strong>Property devaluation:</strong> Lack of identity depresses market value</li>
-                        <li><strong>Reputation damage:</strong> Word spreads about forgettable, cold environments</li>
-                    </ul>
-                    <p><strong>Recommendation:</strong> Requires strategic intervention, not decoration. Transformation is possible.</p>
-                    <p><strong>Reference:</strong> Solved this before with the 450k project—transformed architectural sterility into belonging through site-specific installation and material storytelling.</p>
+                    <p>Your space isn't connecting with anyone. It's cold, generic, and forgettable. People treat it like a corridor, not a place.</p>
+                    <p>That sounds harsh, but here's the upside: you have a clean slate. There's nothing to work around, no half-measures to undo. We can build belonging from the ground up.</p>
+                    <p>The question isn't "how bad is it?" — it's "what do you want people to feel when they walk in?" Welcomed? Calm? Curious? At home?</p>
+                    <p>Once I understand your space and audience, I can show how layered, site-specific artwork creates the texture and story that's currently missing.</p>
                 `;
-                cta = "This can't wait. Let's schedule a consultation this week to assess what's possible and map a path forward.";
+                cta = "Let's talk about who you're trying to reach and what you want them to experience. That's the starting point.";
             }
 
                 // Store for PDF generation
@@ -892,50 +868,61 @@
         }
 
         // PDF Download Function
-        function downloadPDF() {
+        async function downloadPDF() {
             const { jsPDF } = window.jspdf;
             const doc = new jsPDF();
 
             const pageWidth = doc.internal.pageSize.getWidth();
+            const pageHeight = doc.internal.pageSize.getHeight();
             const margin = 20;
             const contentWidth = pageWidth - (margin * 2);
-            let yPos = 20;
+            let yPos = 25;
 
-            // Header
-            doc.setFontSize(20);
-            doc.setFont(undefined, 'bold');
+            // Header - Report Title
+            doc.setFontSize(24);
+            doc.setFont('helvetica', 'bold');
             doc.text('Belonging Audit Report', margin, yPos);
-            yPos += 10;
-
-            doc.setFontSize(10);
-            doc.setFont(undefined, 'normal');
-            doc.text(`Prepared for: ${userEmail}`, margin, yPos);
-            yPos += 5;
-            doc.text(`Date: ${new Date().toLocaleDateString()}`, margin, yPos);
-            yPos += 15;
-
-            // Overall Score
-            doc.setFontSize(16);
-            doc.setFont(undefined, 'bold');
-            doc.text('Overall Score', margin, yPos);
-            yPos += 10;
-
-            doc.setFontSize(32);
-            doc.text(`${userScore}/25`, margin, yPos);
             yPos += 12;
 
-            doc.setFontSize(14);
-            doc.text(resultsHeadline, margin, yPos);
-            yPos += 15;
+            // Prepared for and Date
+            doc.setFontSize(10);
+            doc.setFont('helvetica', 'normal');
+            doc.setTextColor(100, 100, 100);
+            doc.text(`Prepared for: ${userEmail}`, margin, yPos);
+            yPos += 5;
+            doc.text(`Date: ${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}`, margin, yPos);
+            yPos += 18;
 
-            // Category Breakdown
-            doc.setFontSize(12);
-            doc.setFont(undefined, 'bold');
-            doc.text('Category Breakdown', margin, yPos);
+            // Overall Score Section
+            doc.setTextColor(0, 0, 0);
+            doc.setFontSize(14);
+            doc.setFont('helvetica', 'bold');
+            doc.text('Overall Score', margin, yPos);
+            yPos += 12;
+
+            doc.setFontSize(36);
+            doc.setFont('helvetica', 'bold');
+            doc.text(`${userScore}/25`, margin, yPos);
+            yPos += 14;
+
+            // Headline Result
+            doc.setFontSize(16);
+            doc.setFont('helvetica', 'bold');
+            const headlineLines = doc.splitTextToSize(resultsHeadline, contentWidth);
+            headlineLines.forEach(line => {
+                doc.text(line, margin, yPos);
+                yPos += 8;
+            });
             yPos += 8;
 
-            doc.setFontSize(10);
-            doc.setFont(undefined, 'normal');
+            // Category Breakdown Section
+            doc.setFontSize(14);
+            doc.setFont('helvetica', 'bold');
+            doc.text('Category Breakdown', margin, yPos);
+            yPos += 10;
+
+            doc.setFontSize(11);
+            doc.setFont('helvetica', 'normal');
             const categories = [
                 { name: 'Visual Depth', score: answers[1] },
                 { name: 'Sense of Place', score: answers[2] },
@@ -945,64 +932,117 @@
             ];
 
             categories.forEach(cat => {
-                doc.text(`${cat.name}: ${cat.score}/5`, margin, yPos);
-                yPos += 6;
+                doc.text(`${cat.name}:`, margin, yPos);
+                doc.setFont('helvetica', 'bold');
+                doc.text(`${cat.score}/5`, margin + 60, yPos);
+                doc.setFont('helvetica', 'normal');
+                yPos += 7;
             });
-            yPos += 8;
+            yPos += 10;
 
-            // Extract text from HTML content for PDF
+            // Analysis Section
+            doc.setFontSize(14);
+            doc.setFont('helvetica', 'bold');
+            doc.text('Analysis', margin, yPos);
+            yPos += 10;
+
+            // Extract and format content paragraphs
             const tempDiv = document.createElement('div');
             tempDiv.innerHTML = resultsContent;
-            const textContent = tempDiv.textContent || tempDiv.innerText;
-
-            // Business Impact & Recommendation
-            doc.setFontSize(12);
-            doc.setFont(undefined, 'bold');
-            doc.text('Analysis', margin, yPos);
-            yPos += 8;
-
-            doc.setFontSize(9);
-            doc.setFont(undefined, 'normal');
-            const lines = doc.splitTextToSize(textContent, contentWidth);
-
-            lines.forEach(line => {
-                if (yPos > 270) {
-                    doc.addPage();
-                    yPos = 20;
-                }
-                doc.text(line, margin, yPos);
-                yPos += 5;
+            const paragraphs = Array.from(tempDiv.querySelectorAll('p')).map(p => {
+                // Remove <strong> tags but keep the text
+                return p.textContent || p.innerText;
             });
 
-            // Next Steps
-            yPos += 10;
-            if (yPos > 250) {
+            doc.setFontSize(10);
+            doc.setFont('helvetica', 'normal');
+
+            paragraphs.forEach(para => {
+                if (yPos > 250) {
+                    doc.addPage();
+                    yPos = 25;
+                }
+
+                const lines = doc.splitTextToSize(para, contentWidth);
+                lines.forEach(line => {
+                    if (yPos > 270) {
+                        doc.addPage();
+                        yPos = 25;
+                    }
+                    doc.text(line, margin, yPos);
+                    yPos += 6;
+                });
+                yPos += 4; // Space between paragraphs
+            });
+
+            // Next Steps Section
+            yPos += 8;
+            if (yPos > 230) {
                 doc.addPage();
-                yPos = 20;
+                yPos = 25;
             }
 
-            doc.setFontSize(12);
-            doc.setFont(undefined, 'bold');
+            doc.setFontSize(14);
+            doc.setFont('helvetica', 'bold');
             doc.text('Next Steps', margin, yPos);
-            yPos += 8;
+            yPos += 10;
 
             doc.setFontSize(10);
-            doc.setFont(undefined, 'normal');
+            doc.setFont('helvetica', 'normal');
             doc.text('Ready to transform your space?', margin, yPos);
+            yPos += 8;
+
+            doc.setFont('helvetica', 'bold');
+            doc.text('Book a consultation:', margin, yPos);
+            doc.setFont('helvetica', 'normal');
             yPos += 6;
-            doc.text('Book a consultation: calendly.com/donsamec/15-minutes-discovery-call', margin, yPos);
-            yPos += 6;
+            doc.setTextColor(0, 0, 200);
+            doc.text('calendly.com/donsamec/15-minutes-discovery-call', margin, yPos);
+            doc.setTextColor(0, 0, 0);
+            yPos += 10;
+
+            doc.setFont('helvetica', 'bold');
             doc.text('Or contact directly:', margin, yPos);
+            doc.setFont('helvetica', 'normal');
             yPos += 6;
-            doc.text('don.samec@gmail.com | +353 83 097 1140', margin, yPos);
+            doc.text('don.samec@gmail.com', margin, yPos);
+            yPos += 6;
+            doc.text('+353 83 097 1140', margin, yPos);
+
+            // Signature (if available)
+            try {
+                const signatureImg = new Image();
+                signatureImg.src = 'images/signature.png';
+
+                await new Promise((resolve, reject) => {
+                    signatureImg.onload = () => {
+                        // Position signature at bottom of page
+                        const sigWidth = 50;
+                        const sigHeight = (signatureImg.height / signatureImg.width) * sigWidth;
+                        const sigY = pageHeight - 40;
+
+                        doc.addImage(signatureImg, 'PNG', margin, sigY, sigWidth, sigHeight);
+                        resolve();
+                    };
+                    signatureImg.onerror = () => {
+                        // Signature not available, continue without it
+                        resolve();
+                    };
+
+                    // Timeout after 1 second
+                    setTimeout(() => resolve(), 1000);
+                });
+            } catch (e) {
+                // Continue without signature if there's an error
+                console.log('Signature not loaded');
+            }
 
             // Footer
-            yPos = doc.internal.pageSize.getHeight() - 20;
             doc.setFontSize(9);
-            doc.setFont(undefined, 'italic');
-            doc.text('Don Samec | Transforming Sterile Spaces into Places of Belonging', margin, yPos);
-            yPos += 5;
-            doc.text('donsamec.com', margin, yPos);
+            doc.setFont('helvetica', 'italic');
+            doc.setTextColor(100, 100, 100);
+            doc.text('Don Samec | Transforming Sterile Spaces into Places of Belonging', margin, pageHeight - 15);
+            doc.text('donsamec.com', margin, pageHeight - 10);
 
             // Save PDF
             doc.save(`Belonging-Audit-Report-${userScore}.pdf`);
