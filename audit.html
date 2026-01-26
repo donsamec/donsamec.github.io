@@ -899,11 +899,11 @@
             doc.setFontSize(24);
             doc.setFont('helvetica', 'bold');
             doc.text(`${userScore}/25`, margin, yPos);
-            yPos += 8;
+            yPos += 12;
 
-            // Headline on its own line below score
+            // Headline on its own line below score with "Audit Result:" prefix
             doc.setFontSize(14);
-            doc.text(resultsHeadline, margin, yPos);
+            doc.text(`Audit Result: ${resultsHeadline}`, margin, yPos);
             yPos += 10;
 
             // Category Breakdown (single column)
