@@ -642,8 +642,8 @@
 
                 <!-- CTA Box -->
                 <div class="cta-box" id="cta-box">
-                    <h3>Recommended Action</h3>
-                    <p id="cta-text"></p>
+                    <h3>Next Step</h3>
+                    <p>I'd like to learn more about your space — who uses it, what's working, and what you want people to feel. From there, I can share how site-specific artwork might help.</p>
                     <div class="contact-info" style="margin-bottom: 2rem;">
                         <strong>Or contact directly:</strong><br>
                         don.samec@gmail.com | +353 83 097 1140
@@ -652,7 +652,7 @@
                     <!-- Calendly Scheduling -->
                     <div style="margin-top: 2rem;">
                         <button onclick="showCalendly()" class="start-button" style="width: 100%; margin-bottom: 1.5rem;">
-                            Schedule Your Consultation
+                            Book a 15-Minute Call
                         </button>
 
                         <div id="calendly-container" style="display: none; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.1); margin-top: 1.5rem;">
@@ -806,7 +806,7 @@
                     resultsEl.classList.add('fade-in');
                 }, 50);
 
-            let headline, content, cta;
+            let headline, content;
 
             if (score >= 20) {
                 headline = "Your Space Is Already Working";
@@ -814,7 +814,6 @@
                     <p>Your space scores high on belonging — people notice it, linger in it, and can describe it to others. That's rare.</p>
                     <p>You may not need intervention. But if you're curious about opportunities to deepen what's already working — a signature piece, a subtle layer of local story, something that rewards closer attention — that's a conversation worth having.</p>
                 `;
-                cta = "If you'd like to explore what 'exceptional' could look like, I'm happy to talk. But honestly? You're already ahead of most.";
             } else if (score >= 15) {
                 headline = "Solid Foundations, Missing Soul";
                 content = `
@@ -822,7 +821,6 @@
                     <p>This is actually a good position to be in. The bones are there. What's missing is story — something that makes the space feel specific, layered, worth a second look.</p>
                     <p>This is where material memory works best: taking a functional space and giving it texture, history, and visual depth that rewards attention.</p>
                 `;
-                cta = "I'd like to learn more about your space, who uses it, and what you want them to feel. From there, I can show you how site-specific artwork might bring it to life.";
             } else if (score >= 10) {
                 headline = "A Blank Canvas";
                 content = `
@@ -831,7 +829,6 @@
                     <p>This is where transformation happens. Spaces in this range have the most potential for dramatic change — because there's nothing competing with the intervention. The art becomes the anchor.</p>
                     <p><strong>Example:</strong> The 450k project scored 11/25 before I started. Cold lobby, beautiful architecture, zero personality. Now it's a destination — residents pause, visitors comment, and the property manager is thrilled with the transformation.</p>
                 `;
-                cta = "I'd like to understand who uses your space and what you want them to feel. That's where the work begins.";
             } else {
                 headline = "Starting From Zero";
                 content = `
@@ -840,7 +837,6 @@
                     <p>The question isn't "how bad is it?" — it's "what do you want people to feel when they walk in?" Welcomed? Calm? Curious? At home?</p>
                     <p>Once I understand your space and audience, I can show how layered, site-specific artwork creates the texture and story that's currently missing.</p>
                 `;
-                cta = "Let's talk about who you're trying to reach and what you want them to experience. That's the starting point.";
             }
 
                 // Store for PDF generation
@@ -849,7 +845,6 @@
 
                 document.getElementById('results-headline').textContent = headline;
                 document.getElementById('results-content').innerHTML = content;
-                document.getElementById('cta-text').textContent = cta;
             }, 2000); // Wait 2s for loading animation
         }
         
