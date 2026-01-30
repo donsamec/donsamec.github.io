@@ -763,16 +763,23 @@
 
                 // Submit to Mailchimp using JSONP to avoid CORS
                 const script = document.createElement('script');
-                const mailchimpParams = new URLSearchParams({
+                const mailchimpParams = {
                     EMAIL: email,
-                    FNAME: '',
-                    LNAME: '',
-                    MMERGE7: 'Assessment Quiz',
-                    b_90954a99a215ceec7843f6702_6a35eafac9: '',
-                    c: 'mailchimpCallback'
-                });
-                script.src = `${mailchimpURL}&${mailchimpParams.toString()}`;
+                    MMERGE7: 'Assessment Quiz'
+                };
+
+                // Build URL manually to ensure proper formatting
+                const params = Object.keys(mailchimpParams)
+                    .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(mailchimpParams[key])}`)
+                    .join('&');
+
+                script.src = `${mailchimpURL}&${params}&c=mailchimpCallback`;
                 document.body.appendChild(script);
+
+                // Clean up script after it loads
+                script.onload = () => {
+                    setTimeout(() => document.body.removeChild(script), 100);
+                };
 
                 // Show results
                 showResults(score);
@@ -786,9 +793,10 @@
         // Mailchimp callback (required for JSONP)
         window.mailchimpCallback = function(data) {
             if (data.result === 'success') {
-                console.log('Successfully added to Mailchimp');
+                console.log('✅ Successfully added to Mailchimp audience');
             } else {
-                console.log('Mailchimp response:', data.msg);
+                console.error('❌ Mailchimp error:', data.msg);
+                console.log('Full response:', data);
             }
         };
         
