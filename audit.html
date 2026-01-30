@@ -762,17 +762,16 @@
                 });
 
                 // Submit to Mailchimp using JSONP to avoid CORS
-                const mailchimpData = new URLSearchParams({
+                const script = document.createElement('script');
+                const mailchimpParams = new URLSearchParams({
                     EMAIL: email,
                     FNAME: '',
                     LNAME: '',
                     MMERGE7: 'Assessment Quiz',
-                    b_90954a99a215ceec7843f6702_6a35eafac9: ''
+                    b_90954a99a215ceec7843f6702_6a35eafac9: '',
+                    c: 'mailchimpCallback'
                 });
-
-                // Use JSONP for Mailchimp (avoids CORS issues)
-                const script = document.createElement('script');
-                script.src = `${mailchimpURL}&${mailchimpData.toString()}&c=mailchimpCallback`;
+                script.src = `${mailchimpURL}&${mailchimpParams.toString()}`;
                 document.body.appendChild(script);
 
                 // Show results
