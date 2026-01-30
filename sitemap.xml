@@ -14,3 +14,10 @@
 ```
 
 ---
+
+**2. Create a `robots.txt` file in your root folder**
+```
+User-agent: *
+Allow: /
+
+Sitemap: https://donsamec.com/sitemap.xml
